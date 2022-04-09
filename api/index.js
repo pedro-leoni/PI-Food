@@ -27,5 +27,3 @@ conn.sync({ force: true }).then(() => {
   });
 });
 
-const Prueba = 'prueba'
-console.log(Prueba)

@@ -35,7 +35,7 @@ const { Recipe, Diet } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-// con el through indico la tabla que se va a formar en la relacion;
+// con el through indico la tabla que se va a formar en la relacion (tabla intermedia)
 Recipe.belongsToMany(Diet, { through: "recipes_diet" }) 
 Diet.belongsToMany(Recipe, { through: "recipes_diet" })
 

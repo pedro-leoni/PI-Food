@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("recipe", {
-    id_recipe: {
+    id: {
       type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true
@@ -26,6 +26,11 @@ module.exports = (sequelize) => {
     instructions: {
       type: DataTypes.TEXT,
     },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false
+    }
   },
   {
     createdAt: false,

@@ -22,28 +22,6 @@ const getApiInfo = async() => {
     return apiInfo
 }
 
-const getApiDiets = async(req, res) => {
-    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=5000&addRecipeInformation=true&apiKey=${API_KEY2}`)
-    const tipos = []
-    const apiDiets = await apiGet.data.results.map( r => r.diets )
-    apiDiets.forEach(d =>  {
-        d.forEach( e => {
-            tipos.push(e)
-        })
-    })
-    
-    //console.log('apidiets \n',apiDiets)
-    tipos.forEach( d => {
-        Diet.findOrCreate({
-            where: {
-                name: d
-            }
-        });
-    })
-    res.status(200).send('termine')
-    
-
-}
 
 
 
@@ -75,6 +53,6 @@ module.exports = {
     getApiInfo,
     getDbInfo,
     getAllInfo,
-    getApiDiets
+
     
 }

@@ -5,7 +5,7 @@ const { Router } = require('express');
 const getByQuery = require('../controllers/getByQuery');
 const getRecipeById = require('../controllers/getRecipeById');
 const saveRecipe = require('../controllers/saveRecipe');
-const { getApiDiets } = require('../controllers/utils')
+const apiDietTypes = require('../controllers/dietTypes')
 
 const router = Router();
 
@@ -13,7 +13,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.get('/recipes', getByQuery)
 router.get('/recipes/:id', getRecipeById)
-router.get('/types', getApiDiets)
+router.get('/types', apiDietTypes)
 router.post('/recipe', saveRecipe)
 
 

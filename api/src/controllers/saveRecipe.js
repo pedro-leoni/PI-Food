@@ -4,32 +4,34 @@
 const {Recipe, Diet} = require('../db')
 
 const saveRecipe = async (req,res) => {
-    const {
-
-        name,
-        resume,
-        rate,
-        healthy_level,
-        instrucions,
-        createdInDb,
-        diet
-    } = req.body
-    const newRecipe = await Recipe.create({
-
-        name,
-        resume,
-        rate,
-        healthy_level,
-        instrucions,
-        createdInDb
-    })
-    const dietInfo = await Diet.findAll({
-        where: {
-            name: diet
-        }
-    })
-    newRecipe.addDiet(dietInfo)
-    res.send('yo soy xeneize de la cuna al cajon')
+    try{
+        const {
+            name,
+            resume,
+            rate,
+            healthy_level,
+            instructions,
+            createdInDb,
+            diet
+        } = req.body
+        const newRecipe = await Recipe.create({
+            name,
+            resume,
+            rate,
+            healthy_level,
+            instructions,
+            createdInDb
+        })
+        const dietInfo = await Diet.findAll({
+            where: {
+                name: diet
+            }
+        })
+        newRecipe.addDiet(dietInfo)
+        res.json({msg: 'Receta creada con exito'})
+    }catch(err){
+        res.status(400).json({msg: err})
+    }
 
 }
 

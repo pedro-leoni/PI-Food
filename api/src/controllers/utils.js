@@ -14,7 +14,7 @@ const getApiInfo = async() => {
             resume: r.summary,
             rate: r.spoonacularScore,
             healthy_level: r.healthScore,
-            //instructions: r.analyzedInstructions.map( i => i.steps ),
+            instructions: r.analyzedInstructions.map( i => i.steps ),
             diet: r.diets.map( d => d),
             img: r.image
         }

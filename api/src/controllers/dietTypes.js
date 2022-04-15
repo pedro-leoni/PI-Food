@@ -14,7 +14,7 @@ const apiDietTypes = async (req,res) =>{
     const diets = []
     const apiDiets = await apiGet.data.results.map( r => r.diets )
     apiDiets.forEach(d =>  {
-        d.forEach( e => {
+        d.forEach( (e) => {
             diets.push(e)
         })
     })
@@ -25,8 +25,8 @@ const apiDietTypes = async (req,res) =>{
             }
         });
     })
-    const tiposAll = await Diet.findAll();
-    res.status(200).json({msg: 'datos ingresados', tiposAll})
+    const allDiets = await Diet.findAll();
+    res.status(200).json({msg: 'datos ingresados', allDiets})
 
 
 }

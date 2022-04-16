@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Landing = (props) => {
     return(
-        <div className='App'>
+        <div className='landing'>
             <h1> soy la landing </h1>
             <Link to='/home'>
                 <button> tocame para mas placer </button>

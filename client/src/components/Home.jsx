@@ -1,6 +1,6 @@
 import  React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllRecipes } from '../actions';
+import { getAllRecipes, orderByName, orderByRate } from '../actions';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginate from './Paginate';
@@ -28,6 +28,21 @@ const Home = () =>{
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber)
     } 
+    // orden alfabetico
+    const [order, setOrder] = useState('');
+    const handleAlphabeticalOrder = (e) => {
+        e.preventDefault();
+        dispatch(orderByName(e.target.value));
+        setCurrentPage(1)
+        setOrder('ordenado '+e.target.value)
+    }
+    // orden por calificacion
+    const handleRateOrder = (e) => {
+        e.preventDefault();
+        dispatch(orderByRate(e.target.value));
+        setCurrentPage(1);
+        setOrder('ordenado '+e.target.value)
+    }
 
 
     return(
@@ -37,9 +52,10 @@ const Home = () =>{
             {/* este boton va a cargar todas las recetas (en realidad las primeras 100 que empiecen con r hasta que lo arregle en el back jeje) */}
             <button onClick={(e)=>{onClick(e)}}> boton para recargar </button> 
             <div>
-                <select>
-                    <option value='asc'> puntuacion ascendente  </option>
-                    <option value='desc'> puntuacion descendente </option>
+                <select onChange={(e) => handleRateOrder(e)}>
+                    <option> - </option>
+                    <option value='rateAs'> puntuacion ascendente  </option>
+                    <option value='rateDes'> puntuacion descendente </option>
                 </select>
                 <select>
                     <option value='vegan'> vegan </option>
@@ -52,7 +68,8 @@ const Home = () =>{
                     <option value='primal'> primal </option>
                     <option value='whole 30'> whole 30 </option>
                 </select>
-                <select>
+                <select onChange={ (e)=>handleAlphabeticalOrder(e)} >
+                    <option> - </option>
                     <option value='alfAs'> a - z </option>
                     <option value='alfDesc'> z - a </option>
                 </select>

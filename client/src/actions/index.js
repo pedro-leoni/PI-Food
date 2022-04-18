@@ -2,6 +2,9 @@ import axios from 'axios';
 
 
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const ORDER_BY_RATE = "ORDER_BY_RATE";
+export const FILTER_BY_DIET = "FILTER_BY_DIET";
 
 export const getAllRecipes = () => {
     return async (dispatch) => {
@@ -10,5 +13,20 @@ export const getAllRecipes = () => {
             type: GET_ALL_RECIPES,
             payload: respuesta.data
         })
+    }
+}
+
+export const orderByName = (payload) => {
+    return {
+        type: ORDER_BY_NAME,
+        payload
+    }
+
+}
+
+export const orderByRate = (payload) => {
+    return {
+        type: ORDER_BY_RATE,
+        payload
     }
 }

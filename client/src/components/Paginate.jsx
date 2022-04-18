@@ -1,17 +1,17 @@
 import React from "react";
 
 const Paginate = ({recipesPerPage, allRecipes, paginate}) => {
-    const number1 = []
-    const number2 = Math.ceil(allRecipes/recipesPerPage)
-    for(let i = 0 ; i <= number2 ; i++){
-        number1.push(i+1)
+    const numbers = []
+    const numberOfPages = Math.ceil(allRecipes/recipesPerPage)
+    for(let i = 0 ; i < numberOfPages ; i++){
+        numbers.push(i+1)
     }
-
+    // HAY QUE SOLUCIONAR QUE SIEMPRE MUESTRA 1 PAG DE MAS 
     return (
         <nav>
             <ul>
                 {
-                    number1?.map(number => (
+                    numbers?.map(number => (
                         
                             <a onClick={()=>paginate(number)}> {number} </a>
                         

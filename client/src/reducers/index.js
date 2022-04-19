@@ -1,8 +1,9 @@
-import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE } from "../actions";
+import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS } from "../actions";
 
 const initialState = {
     recipes: [],
     recipesAux: [], 
+    diets: [],
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -55,6 +56,15 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 recipes: sortedArr1 
+            }
+        case CREATE_RECIPE:
+            return{
+                ...state,
+            }
+        case GET_DIETS:
+            return{
+                ...state,
+                diets: action.payload
             }
             
 

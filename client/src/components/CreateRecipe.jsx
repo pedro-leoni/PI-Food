@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Link, useHistory} from "react-router-dom";
+import {Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 //importar actions cuando las cree
 import { createNewRecipe, getDiets } from "../actions";
@@ -14,7 +14,7 @@ const CreateRecipe = () => {
         rate: '',
         healthy_level: '',
         instructions: '',
-        diets: []
+        diet: []
     })
     useEffect(()=>{
         dispatch(getDiets())
@@ -28,20 +28,35 @@ const CreateRecipe = () => {
         })
     }
     const handleDiets = (e) => {
-        setInput({
-            ...input,
-            diets: [...input.diets, e.target.value]
-        })
+        if(!input.diet.includes(e.target.value)){
+            setInput({
+                ...input,
+                diet: [...input.diet, e.target.value]
+    
+            })
+        }
     }
     const handleRemoveDiet = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
         setInput({
             ...input,
-            diets: input.diets.filter(diet=> diet !== e.target.value)
+            diet: input.diet.filter(diet=> diet !== e.target.value)
         })
     }
-    //FALTA EL HANDLESUBMIT, PERO LO QUE LLEGO HASTA ACA FUNCIONA!!!!!
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createNewRecipe(input))
+        alert('Receta creada con exito')
+        setInput({
+            name: '',
+            resume: '',
+            rate: '',
+            healthy_level: '',
+            instructions: '',
+            diet: []
+        })
+    }
+
 
     return(
         <div>
@@ -70,16 +85,21 @@ const CreateRecipe = () => {
                 </div>
                 <div>
                     <select onChange={(e)=>handleDiets(e)}>
-                        {
+                        {   
+                            
                             diets.map((d) => {
                                 return(
+                                <>
                                 <option value={d.name} >{d.name}</option>
+                                </>
+                                
                             )})
+                            
                         }
                     </select>
                     <ul>
                             {
-                                input.diets.map( e=>{ 
+                                input.diet.map( e=>{ 
                                     return(
                                         <li>
                                             <button value={e} onClick={(e)=>handleRemoveDiet(e)}>x</button>
@@ -91,7 +111,7 @@ const CreateRecipe = () => {
 
                     </ul>
                 </div>
-                <button type="submit"> Crear Receta </button>
+                <button type="submit" onClick={(e)=>handleSubmit(e)}> Crear Receta </button>
             </form>
         </div>
     )

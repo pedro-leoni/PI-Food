@@ -17,13 +17,12 @@ const SearchBar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(getByQuery(query))
-        
+        setQuery('')
     }
     return (
         <div>
-            <input type='text' placeholder='Buscar' onChange={(e) => handleInputChange(e)}/>
+            <input type='text' placeholder='Buscar' onChange={(e) => handleInputChange(e)} value={query}/>
             <button type="submit" onClick={(e) => handleSubmit(e)} > Buscar </button>
-        
         </div>
     )
 }

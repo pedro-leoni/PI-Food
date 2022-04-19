@@ -5,28 +5,37 @@
 const { Diet } = require('../db')
 const axios = require('axios');
 require('dotenv').config();
-const { API_KEY8 } = process.env;
+const { API_KEY9 } = process.env;
 
 
 
 const apiDietTypes = async (req,res) =>{
-    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=5222&addRecipeInformation=true&apiKey=${API_KEY8}`)
-    const diets = []
-    const apiDiets = await apiGet.data.results.map( r => r.diets )
-    apiDiets.forEach(d =>  {
-        d.forEach( (e) => {
-            diets.push(e)
-        })
-    })
-    diets.forEach( d => {
-        Diet.findOrCreate({
-            where: {
-                name: d
-            }
-        });
-    })
-    const allDiets = await Diet.findAll();
-    res.status(200).json({msg: 'datos ingresados', allDiets})
+    try{
+        const allDiets = await Diet.findAll();
+        if(allDiets.length){
+            res.status(200).json({msg: 'Los datos ya han sido ingresados', allDiets})
+        } else {
+            const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=5222&addRecipeInformation=true&apiKey=${API_KEY9}`)
+            const diets = []
+            const apiDiets = await apiGet.data.results.map( r => r.diets )
+            apiDiets.forEach(d =>  {
+                d.forEach( (e) => {
+                    diets.push(e)
+                })
+            })
+            diets.forEach( d => {
+                Diet.findOrCreate({
+                    where: {
+                        name: d
+                    }
+                });
+            })
+            const allDiets = await Diet.findAll();
+            res.status(200).json({msg: 'Datos ingresados correctamente', allDiets})
+        }
+    } catch(err) {
+        res.status(404).json({msg: `dietTypes esta entrando al error, Seguro caduco la apiKey`, error: err})
+    }
 
 
 }

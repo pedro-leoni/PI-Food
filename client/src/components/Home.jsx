@@ -4,6 +4,7 @@ import { getAllRecipes, orderByName, orderByRate } from '../actions';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginate from './Paginate';
+import SearchBar from './SearchBar';
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const Home = () =>{
                     <option value='alfAs'> a - z </option>
                     <option value='alfDesc'> z - a </option>
                 </select>
+                <SearchBar/>
                 <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
                 {
                     actualPage?.map(el => {

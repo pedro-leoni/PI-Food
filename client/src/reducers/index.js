@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE } from "../actions";
+import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE } from "../actions";
 
 const initialState = {
     recipes: [],
@@ -11,6 +11,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 recipes: action.payload,
                 recipesAux: action.payload
+            }
+        case GET_BY_QUERY:
+            return{
+                ...state,
+                recipes: action.payload
             }
         case ORDER_BY_NAME:
             // alfAs , alfDesc

@@ -20,16 +20,19 @@ const Home = () =>{
     }
 
     //PAGINADO: 
+    // estado local para paginar
     const [currentPage, setCurrentPage] = useState(1)    
     const [recipesPerPage, setRecipesPerPage] = useState(9) // maxima cantidad de recetas en 1 pagina
-    const lastRecipe = currentPage*recipesPerPage            // 
-    const firstRecipe = lastRecipe - recipesPerPage           // 
+    // defino 1era y ultima de cada pagina usando los estados que declare 
+    const lastRecipe = currentPage*recipesPerPage            
+    const firstRecipe = lastRecipe - recipesPerPage           
     const actualPage =  allRecipes.slice(firstRecipe,lastRecipe) // hago el corte, para solo mostrar en la pagina actual las recetas entre first y last
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber)
     } 
-    // orden alfabetico
+    // estado local para re-renderizar 
     const [order, setOrder] = useState('');
+    // orden alfabetico
     const handleAlphabeticalOrder = (e) => {
         e.preventDefault();
         dispatch(orderByName(e.target.value));
@@ -50,7 +53,7 @@ const Home = () =>{
             <Link to='/recipe'> Aca va el boton para crear recetas </Link>
             <h1>ESTE ES EL TITULO</h1>
             {/* este boton va a cargar todas las recetas (en realidad las primeras 100 que empiecen con r hasta que lo arregle en el back jeje) */}
-            <button onClick={(e)=>{onClick(e)}}> boton para recargar </button> 
+            <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button> 
             <div>
                 <select onChange={(e) => handleRateOrder(e)}>
                     <option> - </option>
@@ -77,7 +80,7 @@ const Home = () =>{
                 {
                     actualPage?.map(el => {
                         return(
-                            <Card name={el.name} img={el.img} diet={el.diet} rate={el.rate} diets={el.diets} createdInDb={el.createdInDb}/>
+                            <Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb}/>
                         )
                     })
                 }

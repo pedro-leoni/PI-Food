@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Card from './Card';
 import Paginate from './Paginate';
 import SearchBar from './SearchBar';
+import Filters from './Filters';
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -53,31 +54,12 @@ const Home = () =>{
         <div>
             <Link to='/recipe'> Aca va el boton para crear recetas </Link>
             <h1>ESTE ES EL TITULO</h1>
-            {/* este boton va a cargar todas las recetas (en realidad las primeras 100 que empiecen con r hasta que lo arregle en el back jeje) */}
+            
             <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button> 
             <div>
-                <select onChange={(e) => handleRateOrder(e)}>
-                    <option> - </option>
-                    <option value='rateAs'> puntuacion ascendente  </option>
-                    <option value='rateDes'> puntuacion descendente </option>
-                </select>
-                <select>
-                    <option value='vegan'> vegan </option>
-                    <option value='fodmap friendly'> fodmap friendly </option>
-                    <option value='dairy free'> dairy free </option>
-                    <option value='gluten free'> gluten free </option>
-                    <option value='lacto ovo vegetarian'> lacto ovo vegetarian </option>
-                    <option value='paleolithic'> paleolithic </option>
-                    <option value='pescatarian'> pescatarian </option>
-                    <option value='primal'> primal </option>
-                    <option value='whole 30'> whole 30 </option>
-                </select>
-                <select onChange={ (e)=>handleAlphabeticalOrder(e)} >
-                    <option> - </option>
-                    <option value='alfAs'> a - z </option>
-                    <option value='alfDesc'> z - a </option>
-                </select>
+
                 <SearchBar/>
+                <Filters handleRateOrder={handleRateOrder} handleAlphabeticalOrder={handleAlphabeticalOrder}/>
                 <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
                 {
                     actualPage?.map(el => {
@@ -86,6 +68,7 @@ const Home = () =>{
                         )
                     })
                 }
+                <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
             </div>
         </div>
 

@@ -8,6 +8,7 @@ export const ORDER_BY_RATE = "ORDER_BY_RATE";
 export const FILTER_BY_DIET = "FILTER_BY_DIET";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_DIETS = "GET_DIETS";
+export const GET_DETAILS = "GET_DETAILS";
 
 export const getAllRecipes = () => {
     return async (dispatch) => {
@@ -63,5 +64,15 @@ export const getDiets = () => {
             payload: respuesta.data.allDiets
         })
         
+    }
+}
+
+export const getDetails = (id) => {
+    return async (dispatch) => {
+        let respuesta = await axios(`http://localhost:3001/recipes/${id}`)
+        return dispatch({
+            type: GET_DETAILS,
+            payload: respuesta.data
+        })
     }
 }

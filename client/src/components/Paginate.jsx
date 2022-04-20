@@ -1,6 +1,11 @@
 import React from "react";
 
+
+
 const Paginate = ({recipesPerPage, allRecipes, paginate}) => {
+
+
+    //render
     const numbers = []
     const numberOfPages = Math.ceil(allRecipes/recipesPerPage)
     for(let i = 0 ; i < numberOfPages ; i++){
@@ -13,7 +18,7 @@ const Paginate = ({recipesPerPage, allRecipes, paginate}) => {
                 {
                     numbers?.map(number => (
                         
-                            <a onClick={()=>paginate(number)}> {number} </a>
+                            <a onClick={()=>paginate(number)} key={number}> {number} </a>
                         
                     ))
                 }

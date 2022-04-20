@@ -1,9 +1,10 @@
-import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS } from "../actions";
+import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS, GET_DETAILS } from "../actions";
 
 const initialState = {
     recipes: [],
     recipesAux: [], 
     diets: [],
+    recipeDetail: {}
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -65,6 +66,11 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 diets: action.payload
+            }
+        case GET_DETAILS:
+            return{
+                ...state,
+                recipeDetail: action.payload
             }
             
 

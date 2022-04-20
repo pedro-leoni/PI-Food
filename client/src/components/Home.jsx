@@ -25,7 +25,7 @@ const Home = () =>{
     // estado local para paginar
     const [currentPage, setCurrentPage] = useState(1)    
     const [recipesPerPage, setRecipesPerPage] = useState(9) // maxima cantidad de recetas en 1 pagina
-    // defino 1era y ultima de cada pagina usando los estados que declare 
+    // // defino 1era y ultima de cada pagina usando los estados que declare 
     const lastRecipe = currentPage*recipesPerPage            
     const firstRecipe = lastRecipe - recipesPerPage           
     const actualPage =  allRecipes.slice(firstRecipe,lastRecipe) // hago el corte, para solo mostrar en la pagina actual las recetas entre first y last
@@ -64,7 +64,7 @@ const Home = () =>{
                 {
                     actualPage?.map(el => {
                         return(
-                            <Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb}/>
+                            <Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} key={el.id}/>
                         )
                     })
                 }

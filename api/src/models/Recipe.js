@@ -19,10 +19,10 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rate: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
     },
     healthy_level: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
     },
     instructions: {
       type: DataTypes.TEXT,

@@ -5,8 +5,8 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("diet", {  
     name: {
-        type: DataTypes.STRING,
-        primaryKey: true
+      type: DataTypes.STRING,
+      primaryKey: true
     }
   },
   {

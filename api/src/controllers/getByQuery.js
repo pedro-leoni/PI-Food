@@ -16,9 +16,11 @@ const getByQuery = async (req, res) => {
             } else {
                 res.status(404).json({msg: 'Receta no encontrada'})
             }
+        } else {
+            res.status(200).json(allRecipes)
         }
     } catch(err) {
-        res.status(404).json({msg: `Debes especificar una query`})
+        res.status(404).json({msg: err})
     }
 }
 

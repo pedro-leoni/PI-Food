@@ -11,6 +11,7 @@ const saveRecipe = async (req,res) => {
             rate,
             healthy_level,
             instructions,
+            img,
             createdInDb,
             diet
         } = req.body
@@ -20,6 +21,7 @@ const saveRecipe = async (req,res) => {
             rate,
             healthy_level,
             instructions,
+            img,
             createdInDb
         })
         const dietInfo = await Diet.findAll({

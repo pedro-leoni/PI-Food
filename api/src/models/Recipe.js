@@ -27,6 +27,9 @@ module.exports = (sequelize) => {
     instructions: {
       type: DataTypes.TEXT,
     },
+    img: {
+      type: DataTypes.STRING,
+    },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

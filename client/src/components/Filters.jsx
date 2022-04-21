@@ -1,10 +1,33 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { orderByRate, orderByName, getDiets, filterByDiet } from "../actions";
 
 
+const Filters = ({setCurrentPage , setOrder}) => {
+    const dispatch = useDispatch()
+    const diets = useSelector( (state)=>state.diets)
+    useEffect(()=>{
+        dispatch(getDiets())
+    },[]);
 
-const Filters = ({handleRateOrder, handleAlphabeticalOrder}) => {
-
-
+    const handleRateOrder = (e) => {
+        e.preventDefault();
+        dispatch(orderByRate(e.target.value));
+        setCurrentPage(1);
+        setOrder('ordenado '+e.target.value);
+    }
+    const handleAlphabeticalOrder = (e) => {
+        e.preventDefault();
+        dispatch(orderByName(e.target.value));
+        setCurrentPage(1);
+        setOrder('ordenado '+e.target.value);
+    }
+    const handleFilterByDiet = (e) => {
+        e.preventDefault();
+        dispatch(filterByDiet(e.target.value));
+        setCurrentPage(1);
+        //setOrder('filtrado '+e.target.value)
+    }
     return(
         <div>
             <select onChange={(e) => handleRateOrder(e)}>
@@ -12,16 +35,16 @@ const Filters = ({handleRateOrder, handleAlphabeticalOrder}) => {
                 <option value='rateAs'> puntuacion ascendente  </option>
                 <option value='rateDes'> puntuacion descendente </option>
             </select>
-            <select>
-                <option value='vegan'> vegan </option>
-                <option value='fodmap friendly'> fodmap friendly </option>
-                <option value='dairy free'> dairy free </option>
-                <option value='gluten free'> gluten free </option>
-                <option value='lacto ovo vegetarian'> lacto ovo vegetarian </option>
-                <option value='paleolithic'> paleolithic </option>
-                <option value='pescatarian'> pescatarian </option>
-                <option value='primal'> primal </option>
-                <option value='whole 30'> whole 30 </option>
+            <select onChange={(e) => handleFilterByDiet(e)}>
+                <option>-</option>
+                {   
+                diets.map((d) => {
+                    return(
+                    <>
+                        <option value={d.name} >{d.name}</option>
+                    </>
+                )})
+                }
             </select>
             <select onChange={ (e)=>handleAlphabeticalOrder(e)} >
                 <option> - </option>

@@ -1,10 +1,11 @@
-import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS, GET_DETAILS } from "../actions";
+import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS, GET_DETAILS, GET_BY_QUERY_ERROR } from "../actions";
 
 const initialState = {
     recipes: [],
     recipesAux: [], 
     diets: [],
-    recipeDetail: {}
+    recipeDetail: {},
+    error: {}
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -17,7 +18,8 @@ const rootReducer = (state = initialState, action) => {
         case GET_BY_QUERY:
             return{
                 ...state,
-                recipes: action.payload
+                recipes: action.payload,
+                recipesAux: action.payload
             }
         case ORDER_BY_NAME:
             // alfAs , alfDesc
@@ -72,7 +74,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 recipeDetail: action.payload
             }
-            
+        case FILTER_BY_DIET:
+            const filtered = state.recipesAux.filter((e) => e.diets.includes(action.payload))
+            return{
+                ...state,
+                recipes: filtered
+            }
 
             
         

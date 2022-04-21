@@ -34,44 +34,33 @@ const Home = () =>{
     } 
     // estado local para re-renderizar 
     const [order, setOrder] = useState('');
-    // orden alfabetico
-    const handleAlphabeticalOrder = (e) => {
-        e.preventDefault();
-        dispatch(orderByName(e.target.value));
-        setCurrentPage(1)
-        setOrder('ordenado '+e.target.value)
-    }
-    // orden por calificacion
-    const handleRateOrder = (e) => {
-        e.preventDefault();
-        dispatch(orderByRate(e.target.value));
-        setCurrentPage(1);
-        setOrder('ordenado '+e.target.value)
-    }
-
 
     return(
+        
         <div>
             <Link to='/recipe'> Aca va el boton para crear recetas </Link>
             <h1>ESTE ES EL TITULO</h1>
-            
             <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button> 
+            <SearchBar />
+            {
+                allRecipes.length ? 
             <div>
-
-                <SearchBar/>
-                <Filters handleRateOrder={handleRateOrder} handleAlphabeticalOrder={handleAlphabeticalOrder}/>
+                <Filters setCurrentPage={setCurrentPage} setOrder={setOrder}/>
                 <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
                 {
                     actualPage?.map(el => {
                         return(
-                            <Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} key={el.id}/>
-                        )
+                            <Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} id={el.id} key={el.id}/>
+                        ) 
                     })
                 }
                 <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
-            </div>
+            </div> :
+                <p>
+                    No hay recetas capo
+                </p>
+            }
         </div>
-
     )
 
 }

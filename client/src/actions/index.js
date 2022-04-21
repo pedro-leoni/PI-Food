@@ -10,6 +10,7 @@ export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_DIETS = "GET_DIETS";
 export const GET_DETAILS = "GET_DETAILS";
 
+
 export const getAllRecipes = () => {
     return async (dispatch) => {
         let respuesta = await axios('http://localhost:3001/recipes?name=R')
@@ -74,5 +75,12 @@ export const getDetails = (id) => {
             type: GET_DETAILS,
             payload: respuesta.data
         })
+    }
+}
+
+export const filterByDiet = (payload) => {
+    return{ 
+        type: FILTER_BY_DIET,
+        payload
     }
 }

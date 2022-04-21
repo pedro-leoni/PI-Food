@@ -58,8 +58,6 @@ const CreateRecipe = () => {
             diet: []
         })
     }
-
-
     return(
         <div>
             <Link to='/home'><button> Volver </button></Link>

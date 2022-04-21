@@ -21,8 +21,13 @@ const Details = (props) => {
                         <p>Tipos de dieta: {detail.data.createdInDb? detail.data.diets.map(e=>e.name).join(' ') : detail.data.diets.join(' ')}</p>
                     </div>
                     <img src={detail.data.image?detail.data.image:detail.data.img} alt='imagen not found'/>
-                    <p>{detail.data.resume? detail.data.resume : detail.data.summary}</p>
-                    <p>{detail.data.instructions}</p>
+                    <p>{detail.data.resume? detail.data.resume : detail.data.summary.replace(/<[^>]*>?/g, "")}</p>
+                    <p>Paso a Paso</p>
+                        {
+                            detail.data.instructions?
+                            <p>{detail.data.instructions.replace(/<[^>]*>?/g, "")}</p> :
+                            <p>Esta receta no tiene instrucciones escritas aun</p>
+                        }  
                     <Link to="/home">Volver al Home</Link>
                 </div> :
                 <p> no hay data</p>

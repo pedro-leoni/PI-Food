@@ -13,7 +13,7 @@ export const GET_DETAILS = "GET_DETAILS";
 
 export const getAllRecipes = () => {
     return async (dispatch) => {
-        let respuesta = await axios('http://localhost:3001/recipes?name=R')
+        let respuesta = await axios('http://localhost:3001/recipes?name=')
         return dispatch ({
             type: GET_ALL_RECIPES,
             payload: respuesta.data

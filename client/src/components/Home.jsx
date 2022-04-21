@@ -11,15 +11,14 @@ const Home = () =>{
     const dispatch = useDispatch();
     const allRecipes = useSelector((state) => state.recipes); //map state to props 
 
-    // useEffect(() => {
-    //     dispatch(getAllRecipes())    //map dispatch to props
-    // },[])                           
-    //la funcion onClick esta haciendo el dispatch to props para que la pagina no pregargue las recetas,
-    // en el caso de querer que las precarggue tengo que usar el useEffect que esta comentado mas arriba
-    const onClick = (evento)=> {
-        evento.preventDefault();
-        dispatch(getAllRecipes())
-    }
+    useEffect(() => {
+        dispatch(getAllRecipes())    //map dispatch to props
+    },[])                           
+    // onClick para el boton traerecetas 
+    // const onClick = (evento)=> {
+    //     evento.preventDefault();
+    //     dispatch(getAllRecipes())
+    // }
 
     //PAGINADO: 
     // estado local para paginar
@@ -40,7 +39,7 @@ const Home = () =>{
         <div>
             <Link to='/recipe'> Aca va el boton para crear recetas </Link>
             <h1>ESTE ES EL TITULO</h1>
-            <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button> 
+            {/* <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button>  */}
             <SearchBar />
             {
                 allRecipes.length ? 

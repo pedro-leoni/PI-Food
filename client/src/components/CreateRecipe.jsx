@@ -14,6 +14,7 @@ const CreateRecipe = () => {
         rate: '',
         healthy_level: '',
         instructions: '',
+        img: '',
         diet: []
     })
     useEffect(()=>{
@@ -53,6 +54,7 @@ const CreateRecipe = () => {
             rate: '',
             healthy_level: '',
             instructions: '',
+            img: '',
             diet: []
         })
     }
@@ -78,6 +80,10 @@ const CreateRecipe = () => {
                 <div>
                     <label> Nivel de Saludable </label>
                     <input type='number' value={input.healthy_level} name='healthy_level' onChange={(e)=> handleChange(e)}/>
+                </div>
+                <div>
+                    <label> Imagen </label>
+                    <input type='text' value={input.img} name='img' onChange={(e)=>handleChange(e)}/>
                 </div>
                 <div>
                     <label> Paso a Paso </label>

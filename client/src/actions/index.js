@@ -9,6 +9,7 @@ export const FILTER_BY_DIET = "FILTER_BY_DIET";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_DIETS = "GET_DIETS";
 export const GET_DETAILS = "GET_DETAILS";
+export const ERROR_IN_QUERY = "ERROR_IN_QUERY";
 
 
 export const getAllRecipes = () => {
@@ -30,7 +31,10 @@ export const getByQuery = (name) => {
             })
 
         } catch(err) {
-            console.log(err)
+            return dispatch ({
+                type: ERROR_IN_QUERY,
+                payload: err
+            })
         }
     }
 }
@@ -58,7 +62,7 @@ export const createNewRecipe = (payload) => {
 }
 
 export const getDiets = () => {
-    return async (dispatch) => {
+    return async (dispatch) => { 
         let respuesta = await axios('http://localhost:3001/types');
         return dispatch({
             type: GET_DIETS,

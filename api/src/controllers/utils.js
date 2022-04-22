@@ -6,7 +6,7 @@ const { Recipe, Diet} = require('../db');
 
 
 const getApiInfo = async() => {
-    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=100&addRecipeInformation=true&apiKey=${API_KEY1}`)
+    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=100&addRecipeInformation=true&apiKey=${API_KEY3}`)
     const apiInfo = await apiGet.data.results.map( r => {
         return{
             id: r.id,
@@ -25,19 +25,20 @@ const getApiInfo = async() => {
 
 
 
-
+// SI LA DESCOMENTO LA TENGO QUE VOLVER A EXPORTAR 
+//
 // de Diet traeme nombre mediante los atributos
-const getDbInfo = async() => {
-    return await Recipe.findAll({
-        include:{
-            model: Diet,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            }
-        }
-    })
-}
+// const getDbInfo = async() => {
+//     return await Recipe.findAll({
+//         include:{
+//             model: Diet,
+//             attributes: ['name'],
+//             through: {
+//                 attributes: [],
+//             }
+//         }
+//     })
+// }
 
 const fixDbInfo = async () => {
     const fixDbInfo = await Recipe.findAll({include: Diet})
@@ -73,9 +74,8 @@ const getAllInfo = async () => {
 
 module.exports = {
     getApiInfo,
-    getDbInfo,
     getAllInfo,
-
+    fixDbInfo
 
 
     

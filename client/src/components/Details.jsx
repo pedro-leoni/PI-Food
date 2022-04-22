@@ -18,7 +18,7 @@ const Details = (props) => {
                     <div>
                         <p>Puntuacion: {detail.data.rate? detail.data.rate : detail.data.spoonacularScore}</p>
                         <p>Puntuacion saludable: {detail.data.healthy_level? detail.data.healthy_level : detail.data.healthScore}</p>
-                        <p>Tipos de dieta: {detail.data.createdInDb? detail.data.diets.map(e=>e.name).join(' ') : detail.data.diets.join(' ')}</p>
+                        <p>Tipos de dieta: {detail.data.diets.join(' ')}</p>
                     </div>
                     <img src={detail.data.image?detail.data.image:detail.data.img} alt='imagen not found'/>
                     <p>{detail.data.resume? detail.data.resume : detail.data.summary.replace(/<[^>]*>?/g, "")}</p>

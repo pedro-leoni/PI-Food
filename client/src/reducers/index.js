@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS, GET_DETAILS, GET_BY_QUERY_ERROR } from "../actions";
+import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS, GET_DETAILS, ERROR_IN_QUERY } from "../actions";
 
 const initialState = {
     recipes: [],
@@ -80,7 +80,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 recipes: filtered
             }
-
+        case ERROR_IN_QUERY:
+            return{
+                ...state,
+                error: action.payload
+            }
             
         
         default:

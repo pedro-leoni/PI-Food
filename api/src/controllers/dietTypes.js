@@ -15,7 +15,7 @@ const apiDietTypes = async (req,res) =>{
         if(allDiets.length){
             res.status(200).json({msg: 'Los datos ya han sido ingresados', allDiets})
         } else {
-            const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=5222&addRecipeInformation=true&apiKey=${API_KEY1}`)
+            const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=5222&addRecipeInformation=true&apiKey=${API_KEY3}`)
             const apiDiets = await apiGet.data.results.map( r => r.diets )
             const diets = []
             apiDiets.forEach(d =>  {

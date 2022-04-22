@@ -6,7 +6,7 @@ const { Recipe, Diet} = require('../db');
 
 
 const getApiInfo = async() => {
-    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=100&addRecipeInformation=true&apiKey=${API_KEY3}`)
+    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=100&addRecipeInformation=true&apiKey=${API_KEY4}`)
     const apiInfo = await apiGet.data.results.map( r => {
         return{
             id: r.id,
@@ -51,6 +51,7 @@ const fixDbInfo = async () => {
             id: e.dataValues.id,
             name: e.dataValues.name,
             resume: e.dataValues.resume,
+            instructions: e.dataValues.instructions,
             rate: e.dataValues.rate,
             healthy_level: e.dataValues.healthy_level,
             img: e.dataValues.img,

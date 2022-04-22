@@ -41,7 +41,7 @@ const Filters = ({setCurrentPage , setOrder}) => {
                 diets.map((d) => {
                     return(
                     <>
-                        <option value={d.name} >{d.name}</option>
+                        <option value={d.name} key={d.name} >{d.name}</option>
                     </>
                 )})
                 }

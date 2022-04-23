@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-//importar actions cuando las cree
 import { createNewRecipe, getDiets } from "../actions";
+import './CreateRecipe.css';
 
 
 const validate = (input) => {
@@ -67,7 +67,7 @@ const CreateRecipe = () => {
         }))
     }
     const handleDiets = (e) => {
-        if(!input.diet.includes(e.target.value)){
+        if(!input.diet.includes(e.target.value) && e.target.value !== '-'){
             setInput({
                 ...input,
                 diet: [...input.diet, e.target.value]
@@ -136,6 +136,7 @@ const CreateRecipe = () => {
                 </div>
                 <div>
                     <select onChange={(e)=>handleDiets(e)}>
+                    <option>-</option>
                         {   
                             
                             diets.map((d) => {

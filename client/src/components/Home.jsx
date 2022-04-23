@@ -6,11 +6,13 @@ import Card from './Card';
 import Paginate from './Paginate';
 import SearchBar from './SearchBar';
 import Filters from './Filters';
+import './Home.css';
 
 const Home = () =>{
     const dispatch = useDispatch();
     const allRecipes = useSelector((state) => state.recipes); //map state to props 
-
+    const error = useSelector((state) => state.error)
+    
     useEffect(() => {
         dispatch(getAllRecipes())    //map dispatch to props
     },[])                           
@@ -33,7 +35,9 @@ const Home = () =>{
     } 
     // estado local para re-renderizar 
     const [order, setOrder] = useState('');
-
+    // if(Object.values(error.data).length){
+    //     console.log(Object.values(error.data))
+    // }
     return(
         
         <div>

@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderByRate, orderByName, getDiets, filterByDiet } from "../actions";
+import './Filters.css';
 
 
 const Filters = ({setCurrentPage , setOrder}) => {
@@ -31,7 +32,7 @@ const Filters = ({setCurrentPage , setOrder}) => {
     return(
         <div>
             <select onChange={(e) => handleRateOrder(e)}>
-                <option> - </option>
+                <option name='invalidOption' value={null}> - </option>
                 <option value='rateAs'> puntuacion ascendente  </option>
                 <option value='rateDes'> puntuacion descendente </option>
             </select>

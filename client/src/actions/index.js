@@ -31,10 +31,7 @@ export const getByQuery = (name) => {
             })
 
         } catch(err) {
-            return dispatch ({
-                type: ERROR_IN_QUERY,
-                payload: err
-            })
+            alert('Receta no encontrada')
         }
     }
 }

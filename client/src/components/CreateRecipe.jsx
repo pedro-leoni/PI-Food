@@ -132,30 +132,31 @@ const CreateRecipe = () => {
     return(
         <div className={styles.container}>
             <section className={styles.top}>
+                
                 <Link to='/home'> <button className={styles.homeButton}> Home </button></Link>
-                <h2> Create your own recipe </h2>
             </section>
             <section className={styles.space}> 
                 <form className={styles.formBox}>
+                    <h2> Create your own recipe </h2>
                     <div>
                         <label> Name </label>
-                        <input className={errors.name ? 'danger' : styles.labels} type='text' value={input.name} name='name' onChange={(e)=> handleChange(e)} />
-                        {errors.name && (<p className='danger'>{errors.name}</p>) }
+                        <input className={errors.name ? styles.danger : styles.labels} type='text' value={input.name} name='name' onChange={(e)=> handleChange(e)} />
+                        {errors.name && (<p className={styles.danger}>{errors.name}</p>) }
                     </div>
                     <div>
                         <label> Resume </label>
-                        <input className={errors.resume ? 'danger' : styles.labels } type='text' value={input.resume} name='resume' onChange={(e)=> handleChange(e)}/>
-                        {errors.resume && (<p className='danger'>{errors.resume}</p>) }
+                        <input className={errors.resume ? styles.danger : styles.labels } type='text' value={input.resume} name='resume' onChange={(e)=> handleChange(e)}/>
+                        {errors.resume && (<p className={styles.danger}>{errors.resume}</p>) }
                     </div>
                     <div>
                         <label> Rate </label>
-                        <input className={errors.rate ? 'danger' : styles.labels } type='number' value={input.rate} name='rate' onChange={(e)=> handleChange(e)}/>
-                        {errors.rate && (<p className='danger'>{errors.rate}</p>) }
+                        <input className={errors.rate ? styles.danger : styles.labels } type='number' value={input.rate} name='rate' onChange={(e)=> handleChange(e)}/>
+                        {errors.rate && (<p className={styles.danger}>{errors.rate}</p>) }
                     </div>
                     <div>
                         <label> Healthy Level </label>
-                        <input className={errors.healthy_level ? 'danger' : styles.labels } type='number' value={input.healthy_level} name='healthy_level' onChange={(e)=> handleChange(e)}/>
-                        {errors.healthy_level && (<p className='danger'>{errors.healthy_level}</p>) }
+                        <input className={errors.healthy_level ? styles.danger : styles.labels } type='number' value={input.healthy_level} name='healthy_level' onChange={(e)=> handleChange(e)}/>
+                        {errors.healthy_level && (<p className={styles.danger}>{errors.healthy_level}</p>) }
                     </div>
                     <div>
                         <label> Image </label>
@@ -163,11 +164,11 @@ const CreateRecipe = () => {
                     </div>
                     <div>
                         <label> Instructions </label>
-                        <textarea className={errors.instructions ? 'danger' :  styles.labels } value={input.instructions} name='instructions' onChange={(e)=> handleChange(e)}/> 
-                        {errors.instructions && (<p className="danger">{errors.instructions}</p>)}
+                        <textarea className={styles.instructions} value={input.instructions} name='instructions' onChange={(e)=> handleChange(e)}/> 
+                        {errors.instructions && (<p className={styles.danger}>{errors.instructions}</p>)}
                     </div>
                     <div>
-                        <select className={errors.diets ? 'danger' :  styles.labels } onChange={(e)=>handleDiets(e)}>
+                        <select className={errors.diets ? styles.danger :  styles.labels } onChange={(e)=>handleDiets(e)}>
                         <option value='-'> Select Diet Types</option>
                             {   
                                 diets.map((d) => {
@@ -176,22 +177,24 @@ const CreateRecipe = () => {
                                 )}) 
                             }
                         </select>
-                        {errors.diet && (<p className='danger'>{errors.diet}</p>) }
-                        <ul>
+                        {errors.diet && (<p className={styles.danger}>{errors.diet}</p>) }
+                        <ul className={styles.dietSelectedList}>
                                 {
                                     input.diet.map( e=>{ 
                                         return(
-                                            <li >
+                                            <ul >
+                                                <li className={styles.dietSelected}>
+                                                {e + " "} 
                                                 <button className={styles.closeButton} value={e} onClick={(e)=>handleRemoveDiet(e)}>x</button>
-                                                {e + " "}
-                                            </li>
+                                                </li>
+                                            </ul>
                                         )
                                     })
                                 }
                         </ul>
                     </div>
                     <div>
-                        <button className={Object.values(errors) ? 'danger' : styles.submit} type="submit" onClick={(e)=>handleSubmit(e)}> Create recipe </button>
+                        <button className={styles.submitButton} type="submit" onClick={(e)=>handleSubmit(e)}> Create recipe </button>
                     </div>
                 </form>
 

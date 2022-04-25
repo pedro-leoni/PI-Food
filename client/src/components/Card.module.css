@@ -1,11 +1,69 @@
-/* 
-display: inline-flex;
-box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
-hacer :hover
 
-*/
 
-/* 
-tengo declarados en el componente: card, cardTitle, container, diets, img, text
+.card{
+    display: flex;
+    width: 450px;
+    height: 300px;
+    margin: 20px;
+    flex-direction: column;
+    text-decoration: none;
+    background-color: rgba(91, 151, 172, 0.574);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+}
 
-*/
+.cardTitle{
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    height: 45px;
+    padding-top: 0px;
+    margin-bottom: 5px;
+    overflow-y: hidden;
+    background-color: rgba(250, 235, 215, 0.674);
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+}
+
+.ratediets{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    margin-top: 0px;
+    font-size: 17px;
+}
+.mappingdiets{
+    background-color: rgba(250, 235, 215, 0.674);
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    margin: 2px;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    padding: 1px;
+}
+.img{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.img img{
+    border: solid 3px rgba(250, 235, 215, 0.674);
+    height: 220px;
+    width: 270px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+}
+
+
+
+.card:hover{
+    background-color: rgba(91, 151, 172, 0.768);
+    box-shadow: rgba(10, 182, 122, 0.818) 0px 0px 10px ;
+    border: 1px solid rgba(0, 0, 0, 0.383);
+}

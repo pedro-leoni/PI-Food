@@ -5,4 +5,47 @@
  */
 
 
- 
+ .container{
+     display: flex;
+     flex-direction: column;
+ }
+
+ .header{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-right: 1%;
+    background-color: rgba(58, 117, 195, 0.963);
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-top: 10px;
+ }
+
+.filters{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.card{
+    display: inline-flex;
+    text-decoration: none;
+}
+.prueba{
+    text-decoration: none;
+    color: black;
+}
+
+.createButton{
+    margin-left: 10px;
+    border: 1px solid black;
+    background-color: rgba(103, 205, 157, 0.892);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.createButton:hover{
+    background-color: rgba(61, 187, 71, 0.851);
+}

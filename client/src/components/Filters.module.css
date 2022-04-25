@@ -5,9 +5,15 @@ tengo en el component: filtersContainer , filters
 
 .filtersContainer{
     display: flex;
-    flex-direction: column; 
+    width: 480px;
+    height: 40px;
     padding: 10px; 
-    width: 150px;
+    margin-top: 20px;
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(58, 117, 195, 0.963);
+    align-items: center;
 }
 
 .filters{

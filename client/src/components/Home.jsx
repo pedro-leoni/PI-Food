@@ -42,32 +42,35 @@ const Home = () =>{
     // }
     return(
         
-        <div className={styles.homeContainer}>
-            <section className={styles.top}>
-                <Link to='/recipe'><button> Create your recipe </button></Link>
-                <h1>Welcome</h1>
-            </section>
+        <div className={styles.container}>
             {/* <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button>  */}
-            <section className={styles.utils}>
+            <section className={styles.header}>
                 <SearchBar />
-                <Filters setCurrentPage={setCurrentPage} setOrder={setOrder}/>
+                <h1 className={styles.title}>Welcome</h1>
+                <Link to='/recipe'><button className={styles.createButton}> Create your recipe </button></Link>
             </section>
+            
+            <section className={styles.filters}>
+                <Filters  setCurrentPage={setCurrentPage} setOrder={setOrder}/>
+                <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
+            </section>
+            
             <section className={styles.content}>
                 {
                     allRecipes.length ? 
                 <div>
-                    
-                    <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
                     {
                         actualPage?.map(el => {
                             return(
-                                <Link to={`/recipes/${el.id}`}><Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} id={el.id} key={el.id}/></Link>
+                                <section className={styles.card}>
+                                <Link className={styles.prueba} to={`/recipes/${el.id}`}><Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} id={el.id} key={el.id}/></Link>
+                                </section>
                             ) 
                         })
                     }
                     <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
                 </div> :
-                    <p>Cargando ...</p>       
+                    <p>Loading ...</p>       
                 }
             </section>
         </div>

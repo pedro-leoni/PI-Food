@@ -4,18 +4,127 @@
 /* estilos creados en componente: container, top, space, formBox, labels, submit, closeButton, homeButton
  */
 
-p.danger {
+.container{
+    background: url(https://images.pexels.com/photos/7333169/pexels-photo-7333169.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    background-color: rgba(250, 235, 215, 0.618);
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 50px;
+}
+.homeButton{
+    height: 30px;
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    background-color: rgba(255, 255, 255, 0.749);
+}
+.homeButton:hover{
+    background-color: rgba(255, 255, 255, 0.968);
+    box-shadow: rgba(255, 246, 71, 0.733) 0px 0px 10px ;
+    cursor: pointer;
+}
+
+
+.space{
+    margin-top: 8%;
+    margin-left: 40%;
+}
+.formBox{
+    background-color: rgba(250, 235, 215, 0.753);
+    border: 1px solid rgba(0, 0, 0, 0.128);
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    font-weight: bold;
+}
+.labels{
+    margin-top: 5%;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+}
+.instructions{
+    margin-top: 5%;
+    height: 90px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+}
+
+
+.dietSelectedList{
+    display: flex;
+    flex-wrap: wrap;
+}
+.dietSelected{
+    list-style: none;
+    font-size: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.128);
+    border-radius: 5px;
+    width: auto;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    margin-top: 5px;
+}
+
+
+.closeButton{
+    width: auto;
+    height: auto;
+    color: black;
+    background-color: rgba(255, 0, 0, 0.154);
+    font-size: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+.closeButton:hover{
+    cursor: pointer;
+}
+
+
+.submitButton{
+    height: 30px;
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    margin-bottom: 10px;
+}
+.submitButton:hover{
+    background-color: rgba(255, 255, 255, 0.968);
+    box-shadow: rgba(255, 246, 71, 0.733) 0px 0px 10px ;
+    cursor: pointer;
+}
+
+
+
+
+ p.danger {
     color: red;
     font-size: 10px;
   }
 input.danger {
-    border: 2px solid red;
+    margin-top: 5%;
+    border: 1px solid red;
 }
-select.danger{
-    border: 2px solid red;
-}
-button.danger :hover{
-    background-color: red;
-}
+
 
 

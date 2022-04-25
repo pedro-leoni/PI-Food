@@ -4,6 +4,10 @@ solo paginate por ahora
 /* .paginate{ */
 /* } */
 
+.paginate{
+    margin-top: 1%;
+}
+
 .numbers{
     border: 1px solid black;
     margin: 2px;
@@ -13,6 +17,7 @@ solo paginate por ahora
     width: 10px;
     background-color: rgba(107, 159, 204, 0.892);
     border-radius: 5px;
+    
 }
 
 .numbers:hover{

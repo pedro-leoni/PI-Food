@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../actions";
 import { Link } from "react-router-dom";
-import './Details.css';
+import styles from './Details.module.css';
 
 const Details = (props) => {
     const dispatch = useDispatch()
@@ -11,7 +11,7 @@ const Details = (props) => {
     },[dispatch])
     const detail = useSelector((state)=>state.recipeDetail)
     return (
-        <div>
+        <div className={styles.detailContainer}>
             {
                 detail.hasOwnProperty('data')?
                 <div>

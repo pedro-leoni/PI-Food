@@ -1,0 +1,23 @@
+/* 
+solo paginate por ahora
+*/
+/* .paginate{ */
+/* } */
+
+.numbers{
+    border: 1px solid black;
+    margin: 2px;
+    padding-left: 5px;
+    padding-right: 1px;
+    height: 10px;
+    width: 10px;
+    background-color: rgba(107, 159, 204, 0.892);
+    border-radius: 5px;
+}
+
+.numbers:hover{
+    border: 1px solid rgb(93, 92, 92);
+    cursor: pointer;
+    background-color: gray;
+
+}

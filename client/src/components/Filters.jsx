@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderByRate, orderByName, getDiets, filterByDiet } from "../actions";
-import './Filters.css';
+import styles from './Filters.module.css';
 
 
 const Filters = ({setCurrentPage , setOrder}) => {
@@ -30,14 +30,20 @@ const Filters = ({setCurrentPage , setOrder}) => {
         //setOrder('filtrado '+e.target.value)
     }
     return(
-        <div>
-            <select onChange={(e) => handleRateOrder(e)}>
-                <option name='invalidOption' value={null}> - </option>
-                <option value='rateAs'> puntuacion ascendente  </option>
-                <option value='rateDes'> puntuacion descendente </option>
+        <div className={styles.filtersContainer}>
+            <h3> Filters: </h3>
+            <select onChange={(e) => handleRateOrder(e)} className={styles.filters}>
+                <option name='invalidOption' value='-'> Rate </option>
+                <option value='rateAs'> Ascendent  </option>
+                <option value='rateDes'> Descendent </option>
             </select>
-            <select onChange={(e) => handleFilterByDiet(e)}>
-                <option>-</option>
+            <select onChange={ (e)=>handleAlphabeticalOrder(e)} className={styles.filters}>
+                <option value='-'> Alphabetical Order </option>
+                <option value='alfAs'> a - z </option>
+                <option value='alfDesc'> z - a </option>
+            </select>
+            <select onChange={(e) => handleFilterByDiet(e)} className={styles.filters}>
+                <option value='-'>Filter by diet</option>
                 {   
                 diets.map((d) => {
                     return(
@@ -47,11 +53,7 @@ const Filters = ({setCurrentPage , setOrder}) => {
                 )})
                 }
             </select>
-            <select onChange={ (e)=>handleAlphabeticalOrder(e)} >
-                <option> - </option>
-                <option value='alfAs'> a - z </option>
-                <option value='alfDesc'> z - a </option>
-            </select>
+
         </div>
     )
 

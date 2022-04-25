@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getByQuery } from "../actions";
-import './SearchBar.css';
+import styles from './SearchBar.module.css';
+
 
 
  
 const SearchBar = () => {
-    const error = useSelector((state) => state.error)
     const dispatch = useDispatch()
     // estado local query
     const[query, setQuery] = useState('')
@@ -17,15 +17,22 @@ const SearchBar = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(getByQuery(query))
-        setQuery('')
+        if(query.length){
+            if(!query.replace(/ /g, "").match(/[^A-Za-z0-9]/)){
+                dispatch(getByQuery(query))
+                setQuery('')
+            } else {
+                alert('Search cannot contain symbols')
+            }
+        } else {
+            alert('Search cannot be empty')
+        }
     }
     
     return (
-        <div>
-            <input type='text' placeholder='Buscar' onChange={(e) => handleInputChange(e)} value={query}/>
-            <button type="submit" onClick={(e) => handleSubmit(e)} > Buscar </button>
-            {/* {Object.values(error).length && (alert('asdasas'))} */}
+        <div className={styles.container}>
+            <input className={styles.label} type='text' placeholder='Buscar' onChange={(e) => handleInputChange(e)} value={query}/>
+            <button className={styles.goButton} type="submit" onClick={(e) => handleSubmit(e)} > Buscar </button>
         </div>
 
     )

@@ -2,11 +2,13 @@ import  React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRecipes, orderByName, orderByRate } from '../actions';
 import { Link } from 'react-router-dom';
+//components
 import Card from './Card';
 import Paginate from './Paginate';
 import SearchBar from './SearchBar';
 import Filters from './Filters';
-import './Home.css';
+//styles
+import styles from './Home.module.css';
 
 const Home = () =>{
     const dispatch = useDispatch();
@@ -40,29 +42,34 @@ const Home = () =>{
     // }
     return(
         
-        <div>
-            <Link to='/recipe'> Aca va el boton para crear recetas </Link>
-            <h1>ESTE ES EL TITULO</h1>
+        <div className={styles.homeContainer}>
+            <section className={styles.top}>
+                <Link to='/recipe'><button> Create your recipe </button></Link>
+                <h1>Welcome</h1>
+            </section>
             {/* <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button>  */}
-            <SearchBar />
-            {
-                allRecipes.length ? 
-            <div>
+            <section className={styles.utils}>
+                <SearchBar />
                 <Filters setCurrentPage={setCurrentPage} setOrder={setOrder}/>
-                <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
+            </section>
+            <section className={styles.content}>
                 {
-                    actualPage?.map(el => {
-                        return(
-                            <Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} id={el.id} key={el.id}/>
-                        ) 
-                    })
+                    allRecipes.length ? 
+                <div>
+                    
+                    <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
+                    {
+                        actualPage?.map(el => {
+                            return(
+                                <Link to={`/recipes/${el.id}`}><Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} id={el.id} key={el.id}/></Link>
+                            ) 
+                        })
+                    }
+                    <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
+                </div> :
+                    <p>Cargando ...</p>       
                 }
-                <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
-            </div> :
-                <p>
-                    No hay recetas capo
-                </p>
-            }
+            </section>
         </div>
     )
 

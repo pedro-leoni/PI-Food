@@ -1,30 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './Card.css';
+import styles from './Card.module.css';
 
 const Card = ({ name, rate, img, diets, createdInDb, id }) => {
         return( 
-            <div className="card">
-                <div className='card-title'>
-                    <Link to={`/recipes/${id}`}>
+            <div className={styles.card}>
+
+                <div className={styles.cardTitle}>
                         <h3> {name} </h3>
-                    </Link>
-                    <h5>Puntuacion: {rate} </h5>
                 </div>
-                <div className="container">
-                <div className="diet-rate">
-                    <div className="img">
+                <div className={styles.container}>
+                <div className={styles.diets}>
+                    <div className={styles.img}>
                         <img src={img} alt='imagen not found' />
                     </div>
-                        <div>
-                            { diets.map( e => {
-                                return (
-                                    <p key={e}>{e}</p>
-                                )
-                            })}
+                        <div className={styles.text}>
+                        <h5>Puntuacion: {rate} </h5>
+                                { 
+                                diets.map( e => {
+                                    return (
+                                        <p key={e}>{e}</p>
+                                    )
+                                })}
                         </div>
                     </div>
                 </div>
+
             </div>
         )
     }

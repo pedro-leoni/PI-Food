@@ -1,5 +1,5 @@
 import React from "react";
-import './Paginate.css';
+import styles from './Paginate.module.css';
 
 
 
@@ -14,12 +14,12 @@ const Paginate = ({recipesPerPage, allRecipes, paginate}) => {
     }
     // HAY QUE SOLUCIONAR QUE SIEMPRE MUESTRA 1 PAG DE MAS 
     return (
-        <nav>
+        <nav className={styles.paginate}>
             <ul>
                 {
                     numbers?.map(number => (
                         
-                            <a onClick={()=>paginate(number)} key={number}> {number} </a>
+                            <a className={styles.numbers} onClick={()=>paginate(number)} key={number}> {number} </a>
                         
                     ))
                 }

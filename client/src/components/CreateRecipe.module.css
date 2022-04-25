@@ -1,0 +1,21 @@
+
+
+
+/* estilos creados en componente: container, top, space, formBox, labels, submit, closeButton, homeButton
+ */
+
+p.danger {
+    color: red;
+    font-size: 10px;
+  }
+input.danger {
+    border: 2px solid red;
+}
+select.danger{
+    border: 2px solid red;
+}
+button.danger :hover{
+    background-color: red;
+}
+
+

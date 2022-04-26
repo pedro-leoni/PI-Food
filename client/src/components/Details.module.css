@@ -1,3 +1,126 @@
-/* 
-por ahora solo detail container
-*/
+
+
+
+.container{
+    background: url(https://images.pexels.com/photos/4051590/pexels-photo-4051590.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    height: auto;
+    width: 100%;
+    padding-bottom: 5%;
+}
+
+.detailCard{
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    background-color: rgba(250, 235, 215, 0.739);
+    border-radius: 10px;
+    width: 60%;
+    height: auto;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+.title{
+    
+}
+.header{
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
+}
+.headerText{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(250, 235, 215, 0.689);
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
+    padding: 1%;
+}
+
+.image{
+    height: 50%;
+    width: 60%;
+    border-radius: 5px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
+}
+
+.text{
+    height: 30%;
+    width: 80%;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    border: none;
+    margin-top: 2%;
+}
+
+.resume{
+    border: none;
+    border-radius: 5px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
+    padding: 1%;
+    background-color: rgba(250, 235, 215, 0.689);
+    
+}
+.tiposdieta{
+    border: none;
+    border-radius: 5px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
+    padding: 1%;
+    background-color: rgba(250, 235, 215, 0.689);
+}
+.pasoapaso{
+    border: none;
+    border-radius: 5px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
+    padding: 1%;
+    background-color: rgba(250, 235, 215, 0.689);
+}
+
+
+
+
+
+
+.link{
+    text-decoration: none;
+    color: black;
+}
+
+.toHome{
+    margin-left: 10px;
+    border: none;
+    background-color: rgba(228, 223, 217, 0.777);
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    height: 50px;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.toHome:hover{
+    background-color: rgba(255, 255, 255, 0.968);
+    box-shadow: rgba(255, 246, 71, 0.733) 0px 0px 10px ;
+    cursor: pointer;
+}

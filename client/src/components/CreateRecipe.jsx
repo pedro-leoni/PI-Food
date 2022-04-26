@@ -106,6 +106,10 @@ const CreateRecipe = () => {
             ...input,
             diet: input.diet.filter(diet=> diet !== e.target.value)
         })
+        setErrors(validate({
+            ...input,
+            diet: input.diet.filter(diet=> diet !== e.target.value)
+        }))
     }
     const handleSubmit = (e) => {
         e.preventDefault();

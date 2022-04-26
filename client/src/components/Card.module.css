@@ -7,9 +7,15 @@
     margin: 20px;
     flex-direction: column;
     text-decoration: none;
-    background-color: rgba(91, 151, 172, 0.574);
+    background-color: rgba(228, 223, 217, 0.777);
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+}
+.cardLink{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .cardTitle{
@@ -20,8 +26,9 @@
     padding-top: 0px;
     margin-bottom: 5px;
     overflow-y: hidden;
-    background-color: rgba(250, 235, 215, 0.674);
+    background-color: rgba(250, 235, 215, 0.739);
     box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    border: none;
 }
 
 .ratediets{
@@ -63,7 +70,7 @@
 
 
 .card:hover{
-    background-color: rgba(91, 151, 172, 0.768);
-    box-shadow: rgba(10, 182, 122, 0.818) 0px 0px 10px ;
-    border: 1px solid rgba(0, 0, 0, 0.383);
+    background-color: rgba(255, 255, 255, 0.968);
+    box-shadow: rgba(255, 246, 71, 0.733) 0px 0px 10px ;
+    cursor: pointer;
 }

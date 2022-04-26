@@ -31,7 +31,7 @@ export const getByQuery = (name) => {
             })
 
         } catch(err) {
-            alert('Receta no encontrada')
+            alert('Recipe not found')
         }
     }
 }

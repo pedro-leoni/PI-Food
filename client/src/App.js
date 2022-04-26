@@ -13,6 +13,7 @@ function App() {
       <Route path="/home" component={Home}/>
       <Route path="/recipe" component={CreateRecipe}/>
       <Route path="/recipes/:id" component={Details}/>
+      {/* <Route path="/" component={Landing} /> */}
     </div>
   );
 }

@@ -6,23 +6,30 @@ solo paginate por ahora
 
 .paginate{
     margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .numbers{
-    border: 1px solid black;
-    margin: 2px;
-    padding-left: 5px;
-    padding-right: 1px;
-    height: 10px;
+    text-align: center;
+    border: none;
+    margin: 5px;
+    padding: 6px;
+    height: auto;
     width: 10px;
-    background-color: rgba(107, 159, 204, 0.892);
+    background-color: rgba(250, 235, 215, 0.739);
     border-radius: 5px;
-    
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+    font-size: 13px;
 }
 
 .numbers:hover{
-    border: 1px solid rgb(93, 92, 92);
+    background-color: rgba(255, 255, 255, 0.968);
+    box-shadow: rgba(255, 246, 71, 0.733) 0px 0px 10px ;
     cursor: pointer;
-    background-color: gray;
+    padding-left: 5px;
 
 }

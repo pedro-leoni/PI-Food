@@ -63,14 +63,16 @@ const Home = () =>{
                         actualPage?.map(el => {
                             return(
                                 <section className={styles.card}>
-                                <Link className={styles.prueba} to={`/recipes/${el.id}`}><Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} id={el.id} key={el.id}/></Link>
+                                <Card name={el.name} img={el.img}  rate={el.rate} diets={el.diets} createdInDb={el.createdInDb} id={el.id} key={el.id}/>
                                 </section>
                             ) 
                         })
                     }
                     <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
                 </div> :
-                    <p>Loading ...</p>       
+                <div className={styles.loading}>
+                    <p >Loading ...</p>       
+                </div>
                 }
             </section>
         </div>

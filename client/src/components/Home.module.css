@@ -6,19 +6,23 @@
 
 
  .container{
-     display: flex;
-     flex-direction: column;
+
+    display: flex;
+    flex-direction: column;
  }
 
  .header{
     border: 1px solid black;
     border-radius: 10px;
     margin-right: 1%;
-    background-color: rgba(58, 117, 195, 0.963);
+    background-color: rgba(250, 235, 215, 0.739);
     display: flex;
     justify-content: space-between;
     margin-left: 10px;
     margin-top: 10px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
+
  }
 
 .filters{
@@ -38,14 +42,22 @@
 
 .createButton{
     margin-left: 10px;
-    border: 1px solid black;
-    background-color: rgba(103, 205, 157, 0.892);
+    border: none;
+    background-color: rgba(228, 223, 217, 0.777);
+    box-shadow: rgba(66, 67, 43, 0.855) 0px 0px 10px ;
     border-radius: 10px;
     margin-bottom: 15px;
     height: 50px;
     margin-top: 10px;
     margin-right: 10px;
+    font-weight: bold;
 }
 .createButton:hover{
-    background-color: rgba(61, 187, 71, 0.851);
+    background-color: rgba(255, 255, 255, 0.968);
+    box-shadow: rgba(255, 246, 71, 0.733) 0px 0px 10px ;
+    cursor: pointer;
+}
+
+.loading{
+    height: 100%;
 }

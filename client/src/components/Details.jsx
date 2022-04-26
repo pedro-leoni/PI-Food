@@ -12,7 +12,7 @@ const Details = (props) => {
     const detail = useSelector((state)=>state.recipeDetail)
     return (
         
-    <div className={detail.hasOwnProperty('data')?  styles.container : styles.loading}>
+    <div className={detail.hasOwnProperty('data')?  styles.container : styles.loader}>
         <div className={styles.detailCard}>
             {
                 detail.hasOwnProperty('data')?
@@ -56,7 +56,7 @@ const Details = (props) => {
                 </div> 
                 :
                 <div> 
-                    <p> Loading... </p>
+                    <p className={styles.loading}> ... </p>
                 </div>
             }
         </div>

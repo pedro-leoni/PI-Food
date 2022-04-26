@@ -13,6 +13,7 @@ solo paginate por ahora
     border-radius: 5px;
 }
 
+
 .numbers{
     text-align: center;
     border: none;
@@ -24,6 +25,18 @@ solo paginate por ahora
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.77) 0px 0px 10px ;
     font-size: 13px;
+}
+
+.numberSelected{
+    text-align: center;
+    border: none;
+    margin: 5px;
+    padding: 6px;
+    height: auto;
+    width: 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    background-color: rgba(155, 148, 139, 0.906);
 }
 
 .numbers:hover{

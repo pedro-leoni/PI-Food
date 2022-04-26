@@ -6,7 +6,6 @@
 
 
  .container{
-
     display: flex;
     flex-direction: column;
  }
@@ -25,6 +24,7 @@
 
  }
 
+
 .filters{
     display: flex;
     flex-direction: column;
@@ -35,10 +35,7 @@
     display: inline-flex;
     text-decoration: none;
 }
-.prueba{
-    text-decoration: none;
-    color: black;
-}
+
 
 .createButton{
     margin-left: 10px;
@@ -58,6 +55,19 @@
     cursor: pointer;
 }
 
+
+
+
 .loading{
-    height: 100%;
+    font-size: 100px;
+    animation: boldeando 2s infinite;
+}
+
+@keyframes boldeando {
+    from{
+        color: black
+    } to {
+        color: rgb(255, 217, 0);
+    }
+    
 }

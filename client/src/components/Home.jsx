@@ -45,14 +45,13 @@ const Home = () =>{
         <div className={styles.container}>
             {/* <button onClick={(e)=>{onClick(e)}}> boton traerecetas </button>  */}
             <section className={styles.header}>
-                <SearchBar />
-                <h1 className={styles.title}>Welcome</h1>
+                <SearchBar setCurrentPage={setCurrentPage} getAllRecipes={getAllRecipes}/>
                 <Link to='/recipe'><button className={styles.createButton}> Create your recipe </button></Link>
             </section>
             
             <section className={styles.filters}>
                 <Filters  setCurrentPage={setCurrentPage} setOrder={setOrder}/>
-                <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
+                <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} currentPage={currentPage}/>
             </section>
             
             <section className={styles.content}>
@@ -68,10 +67,10 @@ const Home = () =>{
                             ) 
                         })
                     }
-                    <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} />
+                    <Paginate recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginate={paginate} currentPage={currentPage}/>
                 </div> :
                 <div className={styles.loading}>
-                    <p >Loading ...</p>       
+                    <p className={styles.loadingp}>...</p>       
                 </div>
                 }
             </section>

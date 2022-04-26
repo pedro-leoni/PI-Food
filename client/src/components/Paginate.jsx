@@ -3,7 +3,7 @@ import styles from './Paginate.module.css';
 
 
 
-const Paginate = ({recipesPerPage, allRecipes, paginate}) => {
+const Paginate = ({recipesPerPage, allRecipes, paginate, currentPage}) => {
 
 
     //render
@@ -19,7 +19,7 @@ const Paginate = ({recipesPerPage, allRecipes, paginate}) => {
                 {
                     numbers?.map(number => (
                         
-                            <a className={styles.numbers} onClick={()=>paginate(number)} key={number}> {number} </a>
+                            <a className={currentPage===number? styles.numberSelected : styles.numbers } onClick={()=>paginate(number)} key={number}> {number} </a>
                         
                     ))
                 }

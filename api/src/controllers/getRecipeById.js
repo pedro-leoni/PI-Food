@@ -33,7 +33,7 @@ const getRecipeById = async (req, res) => {
             if(recipeDb){
                 res.json({data: recipeDb})
             } else {
-                const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY9}`
+                const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY2}`
                 const recipeApi = await axios(url)
                 res.json({data: recipeApi.data})
             }

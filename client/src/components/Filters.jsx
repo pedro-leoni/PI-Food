@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderByRate, orderByName, getDiets, filterByDiet } from "../actions";
 import styles from './Filters.module.css';
@@ -10,6 +10,7 @@ const Filters = ({setCurrentPage , setOrder}) => {
     useEffect(()=>{
         dispatch(getDiets())
     },[]);
+ 
 
     const handleRateOrder = (e) => {
         e.preventDefault();
@@ -23,12 +24,16 @@ const Filters = ({setCurrentPage , setOrder}) => {
         setCurrentPage(1);
         setOrder('ordenado '+e.target.value);
     }
+
+
+
     const handleFilterByDiet = (e) => {
         e.preventDefault();
         dispatch(filterByDiet(e.target.value));
         setCurrentPage(1);
         //setOrder('filtrado '+e.target.value)
     }
+
     return(
         <div className={styles.filtersContainer}>
             <h3> Filters: </h3>

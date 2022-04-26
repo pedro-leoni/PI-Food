@@ -14,7 +14,7 @@ export const ERROR_IN_QUERY = "ERROR_IN_QUERY";
 
 export const getAllRecipes = () => {
     return async (dispatch) => {
-        let respuesta = await axios('http://localhost:3001/recipes?name=')
+        let respuesta = await axios('/recipes?name=')
         return dispatch ({
             type: GET_ALL_RECIPES,
             payload: respuesta.data
@@ -24,7 +24,7 @@ export const getAllRecipes = () => {
 export const getByQuery = (name) => {
     return async (dispatch) => {
         try {
-            let respuesta = await axios(`http://localhost:3001/recipes?name=${name}`)
+            let respuesta = await axios(`/recipes?name=${name}`)
             return dispatch ({
                 type: GET_BY_QUERY,
                 payload: respuesta.data
@@ -53,14 +53,14 @@ export const orderByRate = (payload) => {
 
 export const createNewRecipe = (payload) => {
     return async (dispatch) => {
-        const post = await axios.post('http://localhost:3001/recipe',payload);
+        const post = await axios.post('/recipe',payload);
         return post
     }
 }
 
 export const getDiets = () => {
     return async (dispatch) => { 
-        let respuesta = await axios('http://localhost:3001/types');
+        let respuesta = await axios('/types');
         return dispatch({
             type: GET_DIETS,
             payload: respuesta.data.allDiets
@@ -71,7 +71,7 @@ export const getDiets = () => {
 
 export const getDetails = (id) => {
     return async (dispatch) => {
-        let respuesta = await axios(`http://localhost:3001/recipes/${id}`)
+        let respuesta = await axios(`/recipes/${id}`)
         return dispatch({
             type: GET_DETAILS,
             payload: respuesta.data

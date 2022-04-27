@@ -13,7 +13,6 @@ import styles from './Home.module.css';
 const Home = () =>{
     const dispatch = useDispatch();
     const allRecipes = useSelector((state) => state.recipes); //map state to props 
-    const error = useSelector((state) => state.error)
     
     useEffect(() => {
         dispatch(getAllRecipes())    //map dispatch to props
@@ -27,7 +26,7 @@ const Home = () =>{
     //PAGINADO: 
     // estado local para paginar
     const [currentPage, setCurrentPage] = useState(1)    
-    const [recipesPerPage, setRecipesPerPage] = useState(9) // maxima cantidad de recetas en 1 pagina
+    const [recipesPerPage, setRecipesPerPage] = useState(9) 
     // // defino 1era y ultima de cada pagina usando los estados que declare 
     const lastRecipe = currentPage*recipesPerPage            
     const firstRecipe = lastRecipe - recipesPerPage           

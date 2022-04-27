@@ -49,8 +49,8 @@ const validate = (input) => {
     }
 
     if(input.instructions){
-        if(input.instructions.replace(/ /g, "").match(/[^A-Za-z0-9]/)){
-            errors.instructions = 'This field can only contain letters'
+        if(input.instructions.replace(/ /g, "").match(/[^A-Za-z0-9-,.\n]/)){
+            errors.instructions = 'This field can only contain letters, numbers, dot, comma and dash'
         }
     }
 

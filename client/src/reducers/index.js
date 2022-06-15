@@ -1,4 +1,4 @@
-import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS, GET_DETAILS, ERROR_IN_QUERY } from "../actions";
+import { GET_ALL_RECIPES, GET_BY_QUERY, ORDER_BY_NAME, FILTER_BY_DIET, ORDER_BY_RATE,CREATE_RECIPE, GET_DIETS, GET_DETAILS, ERROR_IN_QUERY, CLEAR_DETAIL } from "../actions";
 
 const initialState = {
     recipes: [],
@@ -106,6 +106,11 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 error: action.payload
+            }
+        case CLEAR_DETAIL:
+            return{
+                ...state,
+                recipeDetail: {}
             }
             
         

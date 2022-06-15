@@ -10,6 +10,7 @@ export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_DIETS = "GET_DIETS";
 export const GET_DETAILS = "GET_DETAILS";
 export const ERROR_IN_QUERY = "ERROR_IN_QUERY";
+export const CLEAR_DETAIL = "CLEAR_DETAIL";
 
 
 export const getAllRecipes = () => {
@@ -83,5 +84,11 @@ export const filterByDiet = (payload) => {
     return{ 
         type: FILTER_BY_DIET,
         payload
+    }
+}
+
+export const clearDetail = () => {
+    return{
+        type: CLEAR_DETAIL,
     }
 }

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetails } from "../actions";
+import { getDetails, clearDetail } from "../actions";
 import { Link } from "react-router-dom";
 import styles from './Details.module.css';
 
@@ -8,6 +8,9 @@ const Details = (props) => {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getDetails(props.match.params.id))
+        return function(){
+            dispatch(clearDetail())
+        }
     },[dispatch])
     const detail = useSelector((state)=>state.recipeDetail)
     return (

@@ -19,7 +19,7 @@
 - [Link del deploy](https://pi-food-zeta.vercel.app/)
 - [Link a mi perfil de linkedin](https://www.linkedin.com/in/pedro-leoni/)
 
-## Enunciado
+## Consignas
 
 La idea general es crear una aplicación en la cual se puedan ver distintas recetas de comida junto con información relevante de las mismas utilizando la api externa [spoonacular](https://spoonacular.com/food-api) y a partir de ella poder, entre otras cosas:
 

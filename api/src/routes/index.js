@@ -6,6 +6,7 @@ const getByQuery = require('../controllers/getByQuery');
 const getRecipeById = require('../controllers/getRecipeById');
 const saveRecipe = require('../controllers/saveRecipe');
 const apiDietTypes = require('../controllers/dietTypes');
+const deleteRecipe = require('../controllers/deleteRecipe');
 
 
 const router = Router();
@@ -16,6 +17,7 @@ router.get('/recipes', getByQuery)
 router.get('/recipes/:id', getRecipeById)
 router.get('/types', apiDietTypes)
 router.post('/recipe', saveRecipe)
+router.delete('/delete/:id', deleteRecipe)
 
 
 

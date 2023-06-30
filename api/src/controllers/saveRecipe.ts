@@ -1,9 +1,12 @@
 // [ ] POST /recipe:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 // Crea una receta en la base de datos
-const {Recipe, Diet} = require('../db')
+import Recipe from "../models/Recipe";
+import Diet from "../models/Diet";
+import { Request, Response } from "express";
+import { RecipeAttributes } from "custom";
 
-const saveRecipe = async (req,res) => {
+export const saveRecipe = async (req: Request, res: Response) => {
     try{
         const {
             name,
@@ -12,9 +15,8 @@ const saveRecipe = async (req,res) => {
             healthy_level,
             instructions,
             img,
-            createdInDb,
             diet
-        } = req.body
+        } = req.body as any 
         const newRecipe = await Recipe.create({
             name,
             resume,
@@ -22,19 +24,17 @@ const saveRecipe = async (req,res) => {
             healthy_level,
             instructions,
             img,
-            createdInDb
+            created_in_db: true
         })
         const dietInfo = await Diet.findAll({
             where: {
                 name: diet
             }
         })
-        newRecipe.addDiet(dietInfo)
+        // newRecipe.addDiet(dietInfo)
         res.json({msg: 'Receta creada con exito'})
     }catch(err){
         res.status(400).json({msg: err})
     }
 
 }
-
-module.exports = saveRecipe

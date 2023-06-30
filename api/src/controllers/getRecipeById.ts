@@ -1,6 +1,7 @@
-const { fixDbInfo } = require('./utils')
-const axios = require('axios')
-require('dotenv').config();
+import { fixDbInfo } from "../controllers/utils";
+import axios from "axios";
+import { Request, Response } from "express";
+
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7,API_KEY8, API_KEY9 } = process.env;
 
 // [ ] GET /recipes/{idReceta}:
@@ -25,11 +26,11 @@ const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API
 //     }
 
 // }   
-const getRecipeById = async (req, res) => {
+export const getRecipeById = async (req: Request, res: Response) => {
     const { id } = req.params
         try{
             const recipesDb = await fixDbInfo()
-            const recipeDb = recipesDb.find(r => r.id === id)
+            const recipeDb = recipesDb.find((r: any) => r.id === id)
             if(recipeDb){
                 res.json({data: recipeDb})
             } else {
@@ -41,6 +42,3 @@ const getRecipeById = async (req, res) => {
         res.status(404).json({msg: 'Receta no encontrada', err: err})
     } 
 }
-//https://api.spoonacular.com/recipes/716426/information?apiKey=7da230c804d642b8ad8c62c7a75accbf
-
-module.exports = getRecipeById

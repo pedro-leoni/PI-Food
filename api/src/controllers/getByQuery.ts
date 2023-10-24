@@ -21,7 +21,7 @@ export const getByQuery = async(req: Request, res: Response) => {
             res.status(200).json(allRecipes)
         }
     } catch(err) {
-        res.status(404).json({msg: err})
+        res.status(500).json({msg: err})
     }
 }
 

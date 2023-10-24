@@ -26,7 +26,7 @@ const serverStart = ()  => {
   try{
     database.sync({ force: true }).then(() => {
       server.listen(port, () => {
-        console.log('%Server listening on port: ', port);
+        console.log('Server listening on port: ', port);
       });
     });
   }catch(err){

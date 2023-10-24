@@ -9,4 +9,11 @@
         - $ GRANT ALL PRIVILEGES ON DATABASE nombre_de_tu_base_de_datos TO nombre_de_usuario;
         - Guardar usuario y passwor porque son los que se van a utilizar como variables de entorno
     windows: 
+
+- conectarse a la db: 
+    linux:
+        - $ sudo -i -u postgres
+        - $ psql -U postgres
+        - $ \c food
+        - $ \dt (para chequear deberia existir diets, recipes y recipes_diet)
         

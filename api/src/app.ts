@@ -7,8 +7,10 @@ import {database} from "./config/db";
 import './models/Diet';
 import './models/Recipe';
 import './models/asociations';
+import { setupSwagger } from './config/swagger';
 
 const server = express();
+setupSwagger(server)
 
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));

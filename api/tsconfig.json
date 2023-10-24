@@ -18,6 +18,7 @@
       "@/*": ["./*"]
     },
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   },
   "include": ["./src"],
   "exclude": ["./src/**/*.test.ts"]

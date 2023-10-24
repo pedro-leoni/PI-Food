@@ -1,0 +1,8 @@
+paths:
+  /recipes:
+    get:
+      responses:
+        200:
+          description: OK
+      tags:
+        - recipes   

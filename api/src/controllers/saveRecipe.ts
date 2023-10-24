@@ -6,6 +6,10 @@ import Diet from "../models/Diet";
 import { Request, Response } from "express";
 import { RecipeAttributes } from "custom";
 
+interface saveAttributes extends RecipeAttributes {
+    diet: string
+}
+
 export const saveRecipe = async (req: Request, res: Response) => {
     try{
         const {
@@ -16,7 +20,7 @@ export const saveRecipe = async (req: Request, res: Response) => {
             instructions,
             img,
             diet
-        } = req.body as any 
+        } = req.body as saveAttributes 
         const newRecipe = await Recipe.create({
             name,
             resume,

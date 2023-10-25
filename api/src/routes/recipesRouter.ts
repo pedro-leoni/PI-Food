@@ -1,11 +1,6 @@
 import {Router} from "express";
-
-import {getByQuery} from "../controllers/getByQuery"
-import {getRecipeById} from "../controllers/getRecipeById"
-import {saveRecipe} from "../controllers/saveRecipe"
-import {apiDietTypes} from "../controllers/dietTypes"
-import {deleteRecipe} from "../controllers/deleteRecipe"
-
+import {getByQuery, getRecipeById, saveRecipe, deleteRecipe} from "../controllers/recipes"
+import {apiDietTypes} from "../controllers/diets"
 
 const recipesRouter = Router();
 

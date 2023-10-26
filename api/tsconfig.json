@@ -20,6 +20,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
   },
-  "include": ["./src"],
+  "include": ["./src", "src/router.ts"],
   "exclude": ["./src/**/*.test.ts"]
 }

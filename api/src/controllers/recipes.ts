@@ -78,8 +78,8 @@ export const deleteRecipe = async (req: Request, res: Response) => {
 
 export const getByQuery = async(req: Request, res: Response) => {
     try{
-        const queryName = (req.query.name! as string).toLowerCase()
-        //console.log('QUERY ->    : ', queryName)
+        let queryName = ''
+        if(req.query.name) queryName = (req.query.name as string).toLowerCase()
         const allRecipes = await getAllInfo();
         if(queryName) {
             const queryFilter = await allRecipes.filter( (r: any) => r.name.toLowerCase().includes(queryName.toLowerCase()))

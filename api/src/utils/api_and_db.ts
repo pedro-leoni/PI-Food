@@ -12,8 +12,8 @@ export const getApiInfo = async() => {
             resume: r.summary,
             rate: r.spoonacularScore,
             healthy_level: r.healthScore,
-            instructions: r.analyzedInstructions.map( (i: any) => i.steps ),
-            diets: r.diets.map( (d: any) => d),
+            instructions: r.analyzedInstructions.map( (i: {steps: string}) => i.steps ),
+            diets: r.diets.map((d: string) => d),
             img: r.image
         }
     })

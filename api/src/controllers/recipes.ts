@@ -51,7 +51,7 @@ export const getRecipeById = async (req: Request, res: Response) => {
     const { id } = req.params
         try{
             const recipesDb = await fixDbInfo()
-            const recipeDb = recipesDb.find((r: any) => r.id === id)
+            const recipeDb = recipesDb.find((r) => r.id === id)
             if(recipeDb){
                 res.json({data: recipeDb})
             } else {
@@ -82,7 +82,7 @@ export const getByQuery = async(req: Request, res: Response) => {
         if(req.query.name) queryName = (req.query.name as string).toLowerCase()
         const allRecipes = await getAllInfo();
         if(queryName) {
-            const queryFilter = await allRecipes.filter( (r: any) => r.name.toLowerCase().includes(queryName.toLowerCase()))
+            const queryFilter = await allRecipes.filter( (r: Recipe) => r.name.toLowerCase().includes(queryName.toLowerCase()))
             if(queryFilter.length){
                 res.status(200).json(queryFilter)
             } else {

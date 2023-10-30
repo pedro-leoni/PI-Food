@@ -1,0 +1,14 @@
+components:
+  #-------------------------------
+  # Reusable schemas (data models)
+  #-------------------------------
+  schemas:
+    Recipe:    
+      type: object
+      properties: 
+        _id:  
+          type: string
+        name:  
+          type: string
+        resume:  
+          type: string 

@@ -9,9 +9,20 @@ const options = {
       version: '1.0.0',
       description: 'Una union entre la API spoonacular y una db para anexar recetas',
     },
-    basePath: '/',
+    components: {
+      securitySchemes: {
+        token: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        }
+      }
+    },
+    security: [{
+      token: []
+    }]
   },
-  apis: ['./src/routes/swagger/*.yaml'], // Ruta de tus archivos que contienen las anotaciones Swagger
+  apis: ['./src/routes/swagger/*.yaml', './src/schemas/*.yaml'], // Ruta de tus archivos que contienen las anotaciones Swagger
 };
 
 const specs = swaggerJsdoc(options);

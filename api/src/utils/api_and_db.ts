@@ -2,7 +2,7 @@ import axios from "axios";
 import Recipe from "../models/Recipe"; 
 import Diet from "../models/Diet";
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7, API_KEY8, API_KEY9 } = process.env;
-// #TODO esto deberia ser un servicio no un controlador
+
 export const getApiInfo = async() => {
     const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=100&addRecipeInformation=true&apiKey=${API_KEY7}`)
     const apiInfo = await apiGet.data.results.map( (r: any) => {

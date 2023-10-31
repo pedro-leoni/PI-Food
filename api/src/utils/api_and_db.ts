@@ -1,7 +1,10 @@
 import axios from "axios";
 import Recipe from "../models/Recipe"; 
 import Diet from "../models/Diet";
+import NodeCache from "node-cache";
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7, API_KEY8, API_KEY9 } = process.env;
+
+const recipesCache = new NodeCache()
 
 export const getApiInfo = async() => {
     const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=100&addRecipeInformation=true&apiKey=${API_KEY7}`)
@@ -57,12 +60,18 @@ export const fixDbInfo = async () => {
 
 
 export const getAllInfo = async () => {
-    const apiInfo = await getApiInfo()
-    //console.log('APIINFO-------------------------------------->\n'+ apiInfo)
-    //const dbInfo = await getDbInfo()
-    const dbInfo = await fixDbInfo()
-    //console.log('DBINFO-------------------------------------->\n'+ dbInfo)
-    const allInfo = apiInfo.concat(dbInfo)
-    //console.log('ALLINFO-------------------------------------->\n'+ allInfo)
-    return allInfo
+    let recipesCacheGet = recipesCache.get("recipes")
+    if(recipesCacheGet == undefined){
+        const apiInfo = await getApiInfo()
+        //console.log('APIINFO-------------------------------------->\n'+ apiInfo)
+        //const dbInfo = await getDbInfo()
+        const dbInfo = await fixDbInfo()
+        //console.log('DBINFO-------------------------------------->\n'+ dbInfo)
+        const allInfo = apiInfo.concat(dbInfo)
+        //console.log('ALLINFO-------------------------------------->\n'+ allInfo)
+        recipesCache.set("recipes", allInfo)
+        return allInfo
+    } else {
+        return recipesCacheGet
+    }
 }

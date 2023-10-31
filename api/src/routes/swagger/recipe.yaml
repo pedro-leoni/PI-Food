@@ -5,19 +5,22 @@ paths:
         200:
           description: OK
       tags:
-        - recipes   
+        - recipes
     post:
       summary: Adds a new recipe
       requestBody:
-        required: true
-        content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Recipe'
-            example:
-                  name: Isaac
+              $ref: "#/components/schemas/Recipe"
+            examples:
+                ejemplardo:
+                  name: prueba
                   resume: prueba undostres
-        description: Data for creating a new recipe
+                  rate: 1
+                  healthy_level: 1
+                  instructions: prueba
+                  img: prueba
+        
       responses:
         200:
           description: Successfully created a new recipe

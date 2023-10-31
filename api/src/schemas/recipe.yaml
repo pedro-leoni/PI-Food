@@ -11,4 +11,12 @@ components:
         name:  
           type: string
         resume:  
-          type: string 
+          type: string
+        rate:  
+          type: number
+        healthy_level:
+          type: number
+        instructions:
+          type: string
+        img:
+          type: string

@@ -7,25 +7,23 @@ paths:
       tags:
         - recipes
     post:
-      summary: Adds a new recipe
-      requestBody:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Recipe"
-            examples:
-                ejemplardo:
-                  name: prueba
-                  resume: prueba undostres
-                  rate: 1
-                  healthy_level: 1
-                  instructions: prueba
-                  img: prueba
-        
       responses:
         200:
           description: Successfully created a new recipe
         500:
           description: An error occurred while processing the request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipe'
+            example:
+              name: Fluffy
+              resume: prueba123
+              rate: 1
+              healthy_level: 1
+              instructions: pruebasssss
+              img: holi
       tags:
         - recipes
 

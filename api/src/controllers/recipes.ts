@@ -1,13 +1,14 @@
 // [ ] POST /recipe:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 // Crea una receta en la base de datos
+import axios from "axios";
 import Recipe from "../models/Recipe";
 import Diet from "../models/Diet";
 import { Request, Response } from "express";
 import { RecipeAttributes } from "custom";
 import { fixDbInfo, getAllInfo } from "../utils/api_and_db";
-import axios from "axios";
-
+import { recipesCache } from "../utils/api_and_db";
+// TODO: servicio para gestionar api keys y su funcionamiento
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7,API_KEY8, API_KEY9 } = process.env;
 
 interface saveAttributes extends RecipeAttributes {
@@ -15,16 +16,16 @@ interface saveAttributes extends RecipeAttributes {
 }
 
 export const saveRecipe = async (req: Request, res: Response) => {
+    const {
+        name,
+        resume,
+        rate,
+        healthy_level,
+        instructions,
+        img,
+        diet
+    } = req.body as saveAttributes 
     try{
-        const {
-            name,
-            resume,
-            rate,
-            healthy_level,
-            instructions,
-            img,
-            diet
-        } = req.body as saveAttributes 
         const newRecipe = await Recipe.create({
             name,
             resume,
@@ -34,12 +35,14 @@ export const saveRecipe = async (req: Request, res: Response) => {
             img,
             created_in_db: true
         })
-        const dietInfo = await Diet.findAll({
-            where: {
-                name: diet
-            }
-        })
+        // const dietInfo = await Diet.findAll({
+        //     where: {
+        //         name: diet
+        //     }
+        // })
         // newRecipe.addDiet(dietInfo)
+        newRecipe.save()
+        recipesCache.del('recipes')
         res.json({msg: 'Receta creada con exito'})
     }catch(err){
         res.status(400).json({msg: err})
@@ -65,6 +68,7 @@ export const getRecipeById = async (req: Request, res: Response) => {
 }
 
 export const deleteRecipe = async (req: Request, res: Response) => {
+    // TODO: cambiar por borrado logico
     const { id } = req.params;
 
     const recipe = await Recipe.findByPk(id)
@@ -77,6 +81,7 @@ export const deleteRecipe = async (req: Request, res: Response) => {
 }
 
 export const getByQuery = async(req: Request, res: Response) => {
+    // TODO: pensar en filtros y paginado desde cache
     try{
         let queryName = ''
         if(req.query.name) queryName = (req.query.name as string).toLowerCase()

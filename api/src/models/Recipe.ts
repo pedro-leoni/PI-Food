@@ -5,6 +5,8 @@ import { database } from "../config/db";
 
 interface RecipeCreationAttributes extends Optional<RecipeAttributes, "id"> {}
 
+
+// TODO: definir como en los tutoriales
 class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> implements RecipeAttributes {
   public id!: string;
   public name!: string;

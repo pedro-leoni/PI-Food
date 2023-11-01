@@ -3,6 +3,8 @@ import { DietAttributes } from "custom";
 import { DataTypes, Model } from "sequelize";
 // import Recipe from "./Recipe";
 
+
+// TODO: definir como en los tutoriales
 class Diet extends Model<DietAttributes> {
   public name!: string;
 }

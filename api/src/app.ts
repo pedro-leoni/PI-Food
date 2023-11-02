@@ -8,6 +8,7 @@ import './models/Diet';
 import './models/Recipe';
 import './models/asociations';
 import { setupSwagger } from './config/swagger';
+import errorHandler from "./middleware/errorHandler";
 
 const server = express();
 setupSwagger(server)
@@ -17,8 +18,8 @@ server.use(express.json({ limit: '50mb' }));
 server.use(morgan('dev'));
 server.use(cors());
 server.get("/", (req, res) => res.status(200).json("Food API by Pedro Leoni"));
-
 server.use(publicRouter);
+server.use(errorHandler);
 
 const port = process.env.PORT || 3000;
 

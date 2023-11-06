@@ -6,10 +6,10 @@ import NodeCache from "node-cache";
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7, API_KEY8, API_KEY9 } = process.env;
 
 export const recipesCache = new NodeCache()
-
-export const getApiInfo = async() => {
-    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=&number=100&addRecipeInformation=true&apiKey=${API_KEY8}`)
-    const apiInfo = await apiGet.data.results.map( (r: any) => {
+// RODO: homogeneizar el get de la api con el de la db
+export const getApiInfo = async(search: string) => {
+    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&number=100addRecipeInfo=true&apiKey=${API_KEY8}`)
+    const apiInfo = apiGet.data.results.map( (r: any) => {
         return{
             id: r.id,
             name: r.title,
@@ -23,22 +23,8 @@ export const getApiInfo = async() => {
     })
     return apiInfo
 }
-// SI LA DESCOMENTO LA TENGO QUE VOLVER A EXPORTAR 
-//
-// de Diet traeme nombre mediante los atributos
-// const getDbInfo = async() => {
-//     return await Recipe.findAll({
-//         include:{
-//             model: Diet,
-//             attributes: ['name'],
-//             through: {
-//                 attributes: [],
-//             }
-//         }
-//     })
-// }
 
-export const fixDbInfo = async () => {
+export const fixDbInfo = async (search: string) => {
     try{
         const fixDbInfo = await Recipe.findAll({include: Diet})
         const fixedDbInfo = fixDbInfo.map( (e: any) => {
@@ -65,13 +51,14 @@ export const fixDbInfo = async () => {
 }
 
 
-export const getAllInfo = async () => {
+export const getAllInfo = async (search: string | undefined) => {
+    const query = search ? search : ''
     let recipesCacheGet = recipesCache.get("recipes")
     if(recipesCacheGet == undefined){
-        const apiInfo = await getApiInfo()
+        const apiInfo = await getApiInfo(query)
         //console.log('APIINFO-------------------------------------->\n'+ apiInfo)
         //const dbInfo = await getDbInfo()
-        const dbInfo = await fixDbInfo()
+        const dbInfo = await fixDbInfo(query)
         //console.log('DBINFO-------------------------------------->\n'+ dbInfo)
         const allInfo = apiInfo.concat(dbInfo)
         //console.log('ALLINFO-------------------------------------->\n'+ allInfo)

@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { AxiosError } from "axios";
 
 const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) =>{
+    console.log('me ejecuto')
+    console.log(err)
     try {
         let showFullError = true;
         if (err instanceof AxiosError) {
@@ -23,7 +25,7 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
             }
             else if (err.status) {
                 showFullError = false;
-                return res.status(err.status).json();
+                return res.status(err.status).json(err.message);
             }
         }
         if (showFullError) console.log(err)

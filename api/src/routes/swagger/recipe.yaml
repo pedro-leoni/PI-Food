@@ -1,6 +1,11 @@
 paths:
   /recipes:
     get:
+      parameters:
+      - in: header
+        name: search
+        schema:
+          type: string
       responses:
         200:
           description: OK

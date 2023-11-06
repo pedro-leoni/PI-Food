@@ -53,15 +53,17 @@ export const saveRecipe = async (req: Request, res: Response) => {
 export const getRecipeById = async (req: Request, res: Response) => {
     const { id } = req.params
         try{
-            const recipesDb = await fixDbInfo()
-            const recipeDb = recipesDb.find((r) => r.id === id)
-            if(recipeDb){
-                res.json({data: recipeDb})
-            } else {
-                const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY7}`
-                const recipeApi = await axios(url)
-                res.json({data: recipeApi.data})
-            }
+            // QUE MIERDA ES ESTO XD
+            // const recipesDb = await fixDbInfo()
+            // const recipeDb = recipesDb.find((r) => r.id === id)
+            // if(recipeDb){
+            //     res.json({data: recipeDb})
+            // } else {
+            //     const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY7}`
+            //     const recipeApi = await axios(url)
+            //     res.json({data: recipeApi.data})
+            // }
+            res.status(200).json('Por favor arregla este controlador que da verguenza ajena!')
     } catch(err) {
         res.status(404).json({msg: 'Receta no encontrada', err: err})
     } 
@@ -83,20 +85,21 @@ export const deleteRecipe = async (req: Request, res: Response) => {
 export const getByQuery = async(req: Request, res: Response) => {
     // TODO: pensar en filtros y paginado desde cache
     try{
-        let queryName = ''
-        if(req.query.name) queryName = (req.query.name as string).toLowerCase()
-        const allRecipes = await getAllInfo();
-        if(queryName) {
-            const queryFilter = await allRecipes.filter( (r: Recipe) => r.name.toLowerCase().includes(queryName.toLowerCase()))
-            if(queryFilter.length){
-                res.status(200).json(queryFilter)
+
+        const search = req.headers.search ? req.headers.search as string : undefined;
+        const allRecipes = await getAllInfo(search);
+        if(search) {
+            const filtered = await allRecipes.filter( (r: Recipe) => r.name.match(search))
+            if(filtered.length){
+                res.status(200).json(filtered)
             } else {
                 res.status(404).json({msg: 'Receta no encontrada'})
             }
         } else {
             res.status(200).json(allRecipes)
         }
-    } catch(err) {
-        res.status(500).json({msg: err})
+    } catch(err){
+        throw err
     }
+
 }

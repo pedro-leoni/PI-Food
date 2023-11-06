@@ -8,7 +8,7 @@ const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API
 export const recipesCache = new NodeCache()
 // RODO: homogeneizar el get de la api con el de la db
 export const getApiInfo = async(search: string) => {
-    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&number=100addRecipeInfo=true&apiKey=${API_KEY8}`)
+    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&number=100&&addRecipeInformation=true&apiKey=${API_KEY8}`)
     const apiInfo = apiGet.data.results.map( (r: any) => {
         return{
             id: r.id,

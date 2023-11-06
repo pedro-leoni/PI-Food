@@ -25,7 +25,7 @@ const port = process.env.PORT || 3000;
 
 const serverStart = ()  => {
   try{
-    database.sync({ force: true }).then(() => {
+    database.sync({ force: false }).then(() => {
       server.listen(port, () => {
         console.log('Server listening on port: ', port);
       });

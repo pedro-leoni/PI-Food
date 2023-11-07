@@ -2,6 +2,7 @@ import axios from "axios";
 import Recipe from "../models/Recipe"; 
 import Diet from "../models/Diet";
 import NodeCache from "node-cache";
+import { Op } from "sequelize";
 // TODO: manage API_KEY service 
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7, API_KEY8, API_KEY9 } = process.env;
 
@@ -25,8 +26,18 @@ export const getApiInfo = async(search: string) => {
 }
 
 export const fixDbInfo = async (search: string) => {
+    let queryObj: any = {
+        include: Diet
+    }
+    // TODO: este Op.like necesita que la palabra este completa, tengo que buscar la forma de 
+    // buscar por includes en db 
+    if (search) queryObj = {
+        where: {
+            [Op.like]: `%${search}%`
+        }
+    }
     try{
-        const fixDbInfo = await Recipe.findAll({include: Diet})
+        const fixDbInfo = await Recipe.findAll(queryObj)
         const fixedDbInfo = fixDbInfo.map( (e: any) => {
             const fixedDiets = []
             for( let i = 0 ; i < e.dataValues.diets?.length ; i++){

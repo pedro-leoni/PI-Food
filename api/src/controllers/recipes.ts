@@ -25,81 +25,63 @@ export const saveRecipe = async (req: Request, res: Response) => {
         img,
         diet
     } = req.body as saveAttributes 
-    try{
-        const newRecipe = await Recipe.create({
-            name,
-            resume,
-            rate,
-            healthy_level,
-            instructions,
-            img,
-            created_in_db: true
-        })
-        // const dietInfo = await Diet.findAll({
-        //     where: {
-        //         name: diet
-        //     }
-        // })
-        // newRecipe.addDiet(dietInfo)
-        newRecipe.save()
-        recipesCache.del('recipes')
-        res.json({msg: 'Receta creada con exito'})
-    }catch(err){
-        res.status(400).json({msg: err})
-    }
-
+    const newRecipe = await Recipe.create({
+        name,
+        resume,
+        rate,
+        healthy_level,
+        instructions,
+        img,
+        created_in_db: true
+    })
+    // const dietInfo = await Diet.findAll({
+    //     where: {
+    //         name: diet
+    //     }
+    // })
+    // newRecipe.addDiet(dietInfo)
+    newRecipe.save()
+    recipesCache.del('recipes')
+    res.json({msg: 'Receta creada con exito'})
 }
 
 export const getRecipeById = async (req: Request, res: Response) => {
     const { id } = req.params
-        try{
-            // QUE MIERDA ES ESTO XD
-            // const recipesDb = await fixDbInfo()
-            // const recipeDb = recipesDb.find((r) => r.id === id)
-            // if(recipeDb){
-            //     res.json({data: recipeDb})
-            // } else {
-            //     const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY7}`
-            //     const recipeApi = await axios(url)
-            //     res.json({data: recipeApi.data})
-            // }
-            res.status(200).json('Por favor arregla este controlador que da verguenza ajena!')
-    } catch(err) {
-        res.status(404).json({msg: 'Receta no encontrada', err: err})
-    } 
+    // QUE MIERDA ES ESTO XD
+
+    // const recipesDb = await fixDbInfo()
+    // const recipeDb = recipesDb.find((r) => r.id === id)
+    // if(recipeDb){
+    //     res.json({data: recipeDb})
+    // } else {
+    //     const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY7}`
+    //     const recipeApi = await axios(url)
+    //     res.json({data: recipeApi.data})
+    // }
+    res.status(200).json('Por favor arregla este controlador que da verguenza ajena!')
 }
 
 export const deleteRecipe = async (req: Request, res: Response) => {
     // TODO: cambiar por borrado logico
     const { id } = req.params;
-
     const recipe = await Recipe.findByPk(id)
-
     await recipe!.destroy()
-    
     console.log(recipe)
-
     res.status(200).json({ msg: `recipe id: ${id} deleted`})
 }
 
 export const getByQuery = async(req: Request, res: Response) => {
     // TODO: pensar en filtros y paginado desde cache
-    try{
-
-        const search = req.headers.search ? req.headers.search as string : undefined;
-        const allRecipes = await getAllInfo(search);
-        if(search) {
-            const filtered = await allRecipes.filter( (r: Recipe) => r.name.match(search))
-            if(filtered.length){
-                res.status(200).json(filtered)
-            } else {
-                res.status(404).json({msg: 'Receta no encontrada'})
-            }
+    const search = req.headers.search ? req.headers.search as string : undefined;
+    const allRecipes = await getAllInfo(search);
+    if(search) {
+        const filtered = await allRecipes.filter( (r: Recipe) => r.name.match(search))
+        if(filtered.length){
+            res.status(200).json(filtered)
         } else {
-            res.status(200).json(allRecipes)
+            res.status(404).json({msg: 'Receta no encontrada'})
         }
-    } catch(err){
-        throw err
+    } else {
+        res.status(200).json(allRecipes)
     }
-
 }

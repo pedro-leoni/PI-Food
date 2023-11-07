@@ -23,9 +23,9 @@ server.use(errorHandler);
 
 const port = process.env.PORT || 3000;
 
-const serverStart = ()  => {
+const serverStart = async ()  => {
   try{
-    database.sync({ force: false }).then(() => {
+    await database.sync({ force: false }).then(() => {
       server.listen(port, () => {
         console.log('Server listening on port: ', port);
       });

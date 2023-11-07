@@ -60,7 +60,7 @@
     "watch": [
       "src"
     ],
-    "exec": "ts-node-esm ./src/app.ts",
-    "ext": "ts, js, yaml"
+    "exec": "node -r express-async-errors -r reflect-metadata -r dotenv/config -r ts-node/register ./src/app.ts",
+    "ext": "ts, js, yaml, json"
   }
 }

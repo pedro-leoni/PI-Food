@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { AxiosError } from "axios";
+import { ValidationError } from "sequelize";
 
-const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) =>{
-    console.log('me ejecuto')
-    console.log(err)
+const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     try {
         let showFullError = true;
         if (err instanceof AxiosError) {
@@ -27,6 +26,16 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
                 showFullError = false;
                 return res.status(err.status).json(err.message);
             }
+        }
+        if(err instanceof ValidationError){
+            showFullError = false
+            let statusErr = 500
+            console.log(err)
+            // TODO seguir agregando status http segun corresponda
+            if (err.errors[0].type?.toLowerCase() === 'notnull violation'){
+                statusErr = 400
+            }
+            return res.status(statusErr).json(err.message)
         }
         if (showFullError) console.log(err)
         return res.status(500).json(err);

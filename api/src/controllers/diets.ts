@@ -10,32 +10,28 @@ interface ApiResponse {
 }
 
 export const apiDietTypes = async (req: Request, res: Response) =>{
-    try{
-        const allDiets = await Diet.findAll();
-        if(allDiets.length){
-            res.status(200).json({msg: 'Los datos ya han sido ingresados', allDiets})
-        } else {
-            const response = await axios.get<ApiResponse>(`https://api.spoonacular.com/recipes/complexSearch?query=&number=5222&addRecipeInformation=true&apiKey=${API_KEY7}`)
-            const apiDiets = response.data.results.map((r) => r.diets )
-            const diets: string[] = []
-            apiDiets.forEach((d) =>  {
-                d.forEach( (e) => {
-                    diets.push(e)
-                })
+    const allDiets = await Diet.findAll();
+    if(allDiets.length){
+        res.status(200).json({msg: 'Los datos ya han sido ingresados', allDiets})
+    } else {
+        const response = await axios.get<ApiResponse>(`https://api.spoonacular.com/recipes/complexSearch?query=&number=5222&addRecipeInformation=true&apiKey=${API_KEY7}`)
+        const apiDiets = response.data.results.map((r) => r.diets )
+        const diets: string[] = []
+        apiDiets.forEach((d) =>  {
+            d.forEach( (e) => {
+                diets.push(e)
             })
+        })
 
-            for (const d of diets) {
-                await Diet.findOrCreate({
-                    where: {
-                        name: d
-                    }
-                })
-            }
-
-            const allDiets = await Diet.findAll();
-            res.status(200).json({msg: 'Datos ingresados correctamente', allDiets})
+        for (const d of diets) {
+            await Diet.findOrCreate({
+                where: {
+                    name: d
+                }
+            })
         }
-    } catch(err) {
-        res.status(404).json({msg: `dietTypes esta entrando al error, Seguro caduco la apiKey`, error: err})
+
+        const allDiets = await Diet.findAll();
+        res.status(200).json({msg: 'Datos ingresados correctamente', allDiets})
     }
 }

@@ -27,7 +27,7 @@ export const getApiInfo = async (search: string) => {
 
 export const fixDbInfo = async (search: string) => {
     let queryObj: any = {
-        // include: Diet
+        include: Diet
     }
     // TODO: este Op.like necesita que la palabra este completa, tengo que buscar la forma de 
     // buscar por includes en db 
@@ -39,10 +39,10 @@ export const fixDbInfo = async (search: string) => {
     try {
         const fixDbInfo = await Recipe.findAll(queryObj)
         const fixedDbInfo = fixDbInfo.map((e: any) => {
-            // const fixedDiets = []
-            // for( let i = 0 ; i < e.dataValues.diets?.length ; i++){
-            //     fixedDiets.push(e.dataValues.diets[i].dataValues.name)
-            // }
+            const fixedDiets = []
+            for( let i = 0 ; i < e.dataValues.diets?.length ; i++){
+                fixedDiets.push(e.dataValues.diets[i].dataValues.name)
+            }
             return {
                 id: e.dataValues.id,
                 name: e.dataValues.name,
@@ -51,7 +51,7 @@ export const fixDbInfo = async (search: string) => {
                 rate: e.dataValues.rate,
                 healthy_level: e.dataValues.healthy_level,
                 img: e.dataValues.img,
-                // diets: fixedDiets
+                diets: fixedDiets
             }
         })
         return fixedDbInfo

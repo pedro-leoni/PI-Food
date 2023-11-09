@@ -1,4 +1,4 @@
-import Diet from "../models/Diet";
+import {Diet} from "../models/Diet";
 import axios from "axios";
 import { Request, Response } from "express";
 const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API_KEY7 } = process.env;

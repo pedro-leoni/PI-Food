@@ -1,6 +1,6 @@
 import axios from "axios";
-import Recipe from "../models/Recipe"; 
-import Diet from "../models/Diet";
+import {Recipe} from "../models/Recipe"; 
+import {Diet} from "../models/Diet";
 import NodeCache from "node-cache";
 import { Op } from "sequelize";
 // TODO: manage API_KEY service 

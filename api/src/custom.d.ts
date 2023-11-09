@@ -1,6 +1,6 @@
 declare module "custom" {
     interface RecipeAttributes {
-        id: string,
+        id?: string,
         name?: string,
         resume?: string,
         rate?: number,

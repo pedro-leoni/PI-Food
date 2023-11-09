@@ -1,16 +1,22 @@
-import { Sequelize } from "sequelize";
+import {Sequelize} from 'sequelize-typescript';
 import 'dotenv/config'
+import { Diet } from '../models/Diet';
+import { Recipe } from '../models/Recipe';
 
 const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
-} = process.env;
+} = process.env; 
 
-
-export const database = new Sequelize(DB_NAME!, DB_USER!, DB_PASSWORD!, {
+export const database = new Sequelize({
   host: DB_HOST,
+  username: DB_USER,
+  storage: ':memory:',
+  password: DB_PASSWORD,
+  database: DB_NAME,
   dialect: 'postgres',
   logging: false,
-  native: false
+  native: false,
+  models: [Diet, Recipe]
 });
 
 

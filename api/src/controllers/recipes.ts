@@ -2,8 +2,8 @@
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 // Crea una receta en la base de datos
 import axios from "axios";
-import Recipe from "../models/Recipe";
-import Diet from "../models/Diet";
+import {Recipe} from "../models/Recipe";
+import {Diet} from "../models/Diet";
 import { Request, Response } from "express";
 import { RecipeAttributes } from "custom";
 import { fixDbInfo, getAllInfo } from "../utils/api_and_db";

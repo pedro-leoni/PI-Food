@@ -1,4 +1,4 @@
-import { Table, Model, Column, DataType, PrimaryKey, Default, HasMany, AllowNull } from 'sequelize-typescript';
+import { Table, Model, Column, DataType, PrimaryKey, Default, HasMany, AllowNull} from 'sequelize-typescript';
 import { DietAttributes, RecipeAttributes } from "custom";
 import {Diet} from "./Diet";
 import { Optional } from 'sequelize';
@@ -16,15 +16,19 @@ export class Recipe extends Model<RecipeAttributes> implements RecipeAttributes 
   @Column(DataType.UUID)
   public id!: string;
 
+  @AllowNull(false)
   @Column(DataType.STRING)
   public name!: string;
 
+  @AllowNull(false)
   @Column(DataType.STRING)
   public resume!: string;
 
+  @AllowNull(false)
   @Column(DataType.FLOAT)
   public rate!: number;
-  
+
+  @AllowNull(false)
   @Column(DataType.INTEGER)
   public healthy_level!: number;
   

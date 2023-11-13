@@ -73,15 +73,10 @@ export const deleteRecipe = async (req: Request, res: Response) => {
 export const getByQuery = async(req: Request, res: Response) => {
     // TODO: pensar en filtros y paginado desde cache
     const search = req.headers.search ? req.headers.search as string : undefined;
-    const allRecipes = await getAllInfo(search);
-    if(search) {
-        const filtered = await allRecipes.filter( (r: Recipe) => r.name.match(search))
-        if(filtered.length){
-            res.status(200).json(filtered)
-        } else {
-            res.status(404).json({msg: 'Receta no encontrada'})
-        }
+    const recipes = await getAllInfo(search);
+    if (recipes){
+        res.status(200).json(recipes)
     } else {
-        res.status(200).json(allRecipes)
+        res.status(404).json({msg: 'Receta no encontrada'})
     }
 }

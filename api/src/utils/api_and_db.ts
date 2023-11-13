@@ -9,8 +9,8 @@ const { API_KEY, API_KEY1, API_KEY2, API_KEY3, API_KEY4, API_KEY5, API_KEY6, API
 export const recipesCache = new NodeCache()
 // RODO: homogeneizar el get de la api con el de la db
 export const getApiInfo = async (search: string) => {
-    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&number=100&&addRecipeInformation=true&apiKey=${API_KEY8}`)
-    const apiInfo = apiGet.data.results.map((r: any) => {
+    const apiGet = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${search}&number=100&addRecipeInformation=true&apiKey=${API_KEY7}`)       
+    const apiInfo = apiGet.data?.results.map((r: any) => {
         return {
             id: r.id,
             name: r.title,
@@ -23,42 +23,30 @@ export const getApiInfo = async (search: string) => {
         }
     })
     return apiInfo
+    
 }
 
 export const fixDbInfo = async (search: string) => {
-    let queryObj: any = {
-        include: Diet
-    }
-    // TODO: este Op.like necesita que la palabra este completa, tengo que buscar la forma de 
-    // buscar por includes en db 
-    if (search) queryObj = {
-        where: {
-            [Op.like]: `%${search}%`
+
+    const fixDbInfo: any = await Recipe.findAll()
+    const fixedDbInfo = fixDbInfo.map((e: any) => {
+        // const fixedDiets = []
+        // for( let i = 0 ; i < e.dataValues.diets?.length ; i++){
+        //     fixedDiets.push(e.dataValues.diets[i].dataValues.name)
+        // }
+        return {
+            id: e.dataValues.id,
+            name: e.dataValues.name,
+            resume: e.dataValues.resume,
+            instructions: e.dataValues.instructions,
+            rate: e.dataValues.rate,
+            healthy_level: e.dataValues.healthy_level,
+            img: e.dataValues.img,
+            // diets: fixedDiets
         }
-    }
-    try {
-        const fixDbInfo = await Recipe.findAll(queryObj)
-        const fixedDbInfo = fixDbInfo.map((e: any) => {
-            const fixedDiets = []
-            for( let i = 0 ; i < e.dataValues.diets?.length ; i++){
-                fixedDiets.push(e.dataValues.diets[i].dataValues.name)
-            }
-            return {
-                id: e.dataValues.id,
-                name: e.dataValues.name,
-                resume: e.dataValues.resume,
-                instructions: e.dataValues.instructions,
-                rate: e.dataValues.rate,
-                healthy_level: e.dataValues.healthy_level,
-                img: e.dataValues.img,
-                diets: fixedDiets
-            }
-        })
-        return fixedDbInfo
-    } catch (err) {
-        console.log(err)
-        throw Error('Problema cargando los datos(tipar error)')
-    }
+    })
+    return fixedDbInfo
+
 }
 
 
@@ -76,6 +64,10 @@ export const getAllInfo = async (search: string | undefined) => {
         recipesCache.set("recipes", allInfo)
         return allInfo
     } else {
+        if(search){
+            // TODO: buscar en cache
+            console.log('la cache deberia filtrarse por: ',search)
+        }
         return recipesCacheGet
     }
 }
